@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { styled, theme, css, tailwind } from '../css';
-import { Grid, Button } from './index';
+import { Grid, Button, Text, Badge, Input } from '../components';
 
 export default function Home() {
   const [theme, setTheme] = React.useState(undefined);
