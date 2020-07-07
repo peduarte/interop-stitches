@@ -28,7 +28,7 @@ export default function Home() {
       </div>
 
       <div style={{ margin: 120 }}>
-        <Button variant="blue" styled={fancyButton}>
+        <Button variant="blue" styled={fancyButton} as="a" href="https://modulz.app" target="_blank">
           Fancy button
         </Button>
       </div>
