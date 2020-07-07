@@ -2,7 +2,7 @@ import { styled, theme } from './css';
 
 export const Grid = styled.div({
   display: 'grid',
-  gridGap: 4,
+  gap: 4,
 });
 
 export const Button = styled.button(
