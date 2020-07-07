@@ -1,4 +1,4 @@
-import { styled, theme, css, tailwind } from './css';
+import { styled, theme } from './css';
 
 export const Grid = styled.div({
   display: 'grid',

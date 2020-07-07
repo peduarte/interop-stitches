@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-import { styled, theme, css, tailwind } from '../css';
+import { tailwind } from '../css';
 import { Grid, Button, Text, Badge, Input } from '../components';
-import { colorRed, size5, colorRedSize5 } from '../utils';
+// import { colorRed, size5, colorRedSize5 } from '../utils';
 
 export default function Home() {
   const [theme, setTheme] = React.useState(undefined);
