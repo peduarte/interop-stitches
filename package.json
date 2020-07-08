@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@modulz/radix-icons": "latest",
-    "@stitches/css": "^3.0.3",
-    "@stitches/styled": "^3.0.3",
+    "@stitches/css": "^3.0.4",
+    "@stitches/styled": "^3.0.4",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
