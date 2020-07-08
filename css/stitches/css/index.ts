@@ -10,7 +10,13 @@ import {
   TCss,
   TDeclarativeCss,
 } from './types';
-import { createSheets, cssPropToToken, getVendorPrefixAndProps, specificityProps } from './utils';
+import {
+  createSheets,
+  cssPropToToken,
+  getVendorPrefixAndProps,
+  hashString,
+  specificityProps,
+} from './utils';
 
 export * from './types';
 export * from './css-types';
@@ -35,13 +41,13 @@ const toStringCompose = function (this: IComposedAtom) {
 const createToString = (
   sheets: { [screen: string]: ISheet },
   screens: IScreens = {},
-  cssClassnameProvider: (seq: number, atom: IAtom) => [string, string?], // [className, pseudo]
-  startSeq = 0
+  cssClassnameProvider: (atom: IAtom, seq: number | null) => [string, string?], // [className, pseudo]
+  preInjectedRules: Set<string>
 ) => {
   let seq = 0;
   return function toString(this: IAtom) {
-    const shouldInject = seq >= startSeq;
-    const className = cssClassnameProvider(seq++, this);
+    const className = cssClassnameProvider(this, preInjectedRules.size ? null : seq++);
+    const shouldInject = !preInjectedRules.size || !preInjectedRules.has(`.${className[0]}`);
     const value = this.value;
 
     if (shouldInject) {
@@ -74,11 +80,10 @@ const createToString = (
 const createServerToString = (
   sheets: { [screen: string]: ISheet },
   screens: IScreens = {},
-  cssClassnameProvider: (seq: number, atom: IAtom) => [string, string?] // [className, pseudo]
+  cssClassnameProvider: (atom: IAtom, seq: number | null) => [string, string?] // [className, pseudo]
 ) => {
-  let seq = 0;
   return function toString(this: IAtom) {
-    const className = cssClassnameProvider(seq++, this);
+    const className = cssClassnameProvider(this, null);
     const value = this.value;
 
     let cssRule = '';
@@ -132,9 +137,7 @@ const composeIntoMap = (map: Map<string, IAtom>, atoms: (IAtom | IComposedAtom)[
     if (item && 'atoms' in item) {
       composeIntoMap(map, item.atoms);
     } else if (item) {
-      // @ts-ignore
       if (!map.has(item.id)) {
-        // @ts-ignore
         map.set(item.id, item);
       }
     }
@@ -210,14 +213,23 @@ export const createCss = <T extends IConfig>(
 
   // pre-compute class prefix
   const classPrefix = prefix ? (showFriendlyClassnames ? `${prefix}_` : prefix) : '';
-  const cssClassnameProvider = (seq: number, atom: IAtom): [string, string?] => {
+  const cssClassnameProvider = (atom: IAtom, seq: number | null): [string, string?] => {
+    const hash =
+      seq === null
+        ? hashString(
+            `${atom.screen || ''}${atom.cssHyphenProp.replace(/-(moz|webkit|ms)-/, '')}${
+              atom.pseudo || ''
+            }${atom.value}`
+          )
+        : seq;
     const name = showFriendlyClassnames
       ? `${atom.screen ? `${atom.screen}_` : ''}${atom.cssHyphenProp
+          .replace(/-(moz|webkit|ms)-/, '')
           .split('-')
           .map((part) => part[0])
-          .join('')}`
-      : '';
-    const className = `${classPrefix}${name}_${seq}`;
+          .join('')}_${hash}`
+      : `_${hash}`;
+    const className = `${classPrefix}${name}`;
 
     if (atom.pseudo) {
       return [className, atom.pseudo];
@@ -227,18 +239,16 @@ export const createCss = <T extends IConfig>(
   };
 
   const { tags, sheets } = createSheets(env, config.screens);
-  const startSeq = Object.keys(sheets)
-    .filter((key) => key !== '__variables__')
-    .reduce((count, key) => {
-      // Can fail with cross origin (like Codesandbox)
-      try {
-        return count + sheets[key].cssRules.length;
-      } catch {
-        return count;
-      }
-    }, 0);
+  const preInjectedRules = new Set<string>();
+  // tslint:disable-next-line
+  for (const sheet in sheets) {
+    for (let x = 0; x < sheets[sheet].cssRules.length; x++) {
+      preInjectedRules.add(sheets[sheet].cssRules[x].selectorText);
+    }
+  }
+
   let toString = env
-    ? createToString(sheets, config.screens, cssClassnameProvider, startSeq)
+    ? createToString(sheets, config.screens, cssClassnameProvider, preInjectedRules)
     : createServerToString(sheets, config.screens, cssClassnameProvider);
 
   let themeToString = createThemeToString(classPrefix, sheets.__variables__);
@@ -255,25 +265,27 @@ export const createCss = <T extends IConfig>(
   const screens = config.screens || {};
   const utils = config.utils || {};
   const tokens = config.tokens || {};
-
-  let baseTokens = ':root{';
-  // tslint:disable-next-line
-  for (const tokenType in tokens) {
-    // @ts-ignore
+  let baseTokens = '';
+  if (!preInjectedRules.has(':root')) {
+    baseTokens = ':root{';
     // tslint:disable-next-line
-    for (const token in tokens[tokenType]) {
-      const cssvar = `--${tokenType}-${token}`;
-
+    for (const tokenType in tokens) {
       // @ts-ignore
-      baseTokens += `${cssvar}:${tokens[tokenType][token]};`;
+      // tslint:disable-next-line
+      for (const token in tokens[tokenType]) {
+        const cssvar = `--${tokenType}-${token}`;
 
-      // @ts-ignore
-      tokens[tokenType][token] = `var(${cssvar})`;
+        // @ts-ignore
+        baseTokens += `${cssvar}:${tokens[tokenType][token]};`;
+
+        // @ts-ignore
+        tokens[tokenType][token] = `var(${cssvar})`;
+      }
     }
-  }
-  baseTokens += '}';
+    baseTokens += '}';
 
-  sheets.__variables__.insertRule(baseTokens);
+    sheets.__variables__.insertRule(baseTokens);
+  }
 
   // atom cache
   const atomCache = new Map<string, IAtom>();
@@ -329,7 +341,9 @@ export const createCss = <T extends IConfig>(
           for (let sheet in sheets) {
             sheets[sheet].content = '';
           }
-          sheets.__variables__.insertRule(baseTokens);
+          if (baseTokens) {
+            sheets.__variables__.insertRule(baseTokens);
+          }
 
           // We have to reset our toStrings so that they will now inject again,
           // and still cache is it is being reused
