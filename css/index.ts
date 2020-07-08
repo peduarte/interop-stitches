@@ -120,4 +120,5 @@ export const chakra = css.theme({
   },
 });
 
+// @ts-ignore
 export const styled = createStyled(css);
