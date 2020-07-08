@@ -137,7 +137,9 @@ const composeIntoMap = (map: Map<string, IAtom>, atoms: (IAtom | IComposedAtom)[
     if (item && 'atoms' in item) {
       composeIntoMap(map, item.atoms);
     } else if (item) {
+      //@ts-ignore
       if (!map.has(item.id)) {
+        //@ts-ignore
         map.set(item.id, item);
       }
     }
