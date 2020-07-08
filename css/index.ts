@@ -1,13 +1,51 @@
-import { createCss } from '../stitches/css';
-import { createStyled } from '../stitches/styled';
+import { createCss } from './stitches/css';
+import { createStyled } from './stitches/styled';
 import { theme } from '../theme';
 
 export const css = createCss({
   tokens: theme,
   utils: {
     size: (utilCss) => (value: number | string, pseudo?: string) => {
-      console.log('size util', value);
       return utilCss.compose(utilCss.width(value, pseudo), utilCss.height(value, pseudo));
+    },
+    bg: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.backgroundColor(value, pseudo);
+    },
+    marginX: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(utilCss.marginLeft(value, pseudo), utilCss.marginRight(value, pseudo));
+    },
+    mx: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(utilCss.marginLeft(value, pseudo), utilCss.marginRight(value, pseudo));
+    },
+    marginY: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(utilCss.marginTop(value, pseudo), utilCss.marginBottom(value, pseudo));
+    },
+    my: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(utilCss.marginTop(value, pseudo), utilCss.marginBottom(value, pseudo));
+    },
+    paddingX: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(
+        utilCss.paddingLeft(value, pseudo),
+        utilCss.paddingRight(value, pseudo)
+      );
+    },
+    px: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(
+        utilCss.paddingLeft(value, pseudo),
+        utilCss.paddingRight(value, pseudo)
+      );
+    },
+    paddingY: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(
+        utilCss.paddingTop(value, pseudo),
+        utilCss.paddingBottom(value, pseudo)
+      );
+    },
+    py: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.compose(
+        utilCss.paddingTop(value, pseudo),
+        utilCss.paddingBottom(value, pseudo)
+      );
     },
   },
 });
