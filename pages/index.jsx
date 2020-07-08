@@ -1,72 +1,168 @@
 import React from 'react';
 import Head from 'next/head';
-import { tailwind } from '../css';
-import { Grid, Button, Text, Badge, Input } from '../components';
-// import { colorRed, size5, colorRedSize5 } from '../utils';
+import { ChatBubbleIcon } from '@modulz/radix-icons';
+import { styled } from '../css';
+import { Box } from '../components/Box';
+import { Button } from '../components/Button';
+import { IconButton } from '../components/IconButton';
+import { Slider } from '../components/Slider';
+import { Alert } from '../components/Alert';
+import { Text } from '../components/Text';
 
 export default function Home() {
-  const [theme, setTheme] = React.useState(undefined);
+  React.useEffect(() => {
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.red = 'stylesheet';
+    link.href = 'https://core.modulz.app/fonts/fonts.css';
+    head.appendChild(link);
+  }, []);
+
   return (
-    <Grid className={theme}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Demo</title>
         <link rel="icon" href="/favicon.ico" />
-        {/* <link rel="stylesheet" href="https://core.modulz.app/fonts/fonts.css" /> */}
       </Head>
 
-      <div style={{ position: 'fixed', right: 20, top: 20 }}>
-        <Button onClick={() => setTheme(undefined)}>Radix</Button>
-        <Button onClick={() => setTheme(tailwind)}>Tailwind</Button>
-      </div>
+      <Box
+        styled={styled({
+          display: 'grid',
+          gap: '20px',
+          gridTemplateColumns: 'repeat(4, min-content)',
+          marginBottom: 4,
+        })}
+      >
+        <Button>Default button</Button>
+        <Button variant="blue">Blue button</Button>
+        <Button variant="green">Green button</Button>
+        <Button variant="red">Red button</Button>
+      </Box>
 
-      <Button variant="gray" size="0">
-        Gray size 0
-      </Button>
-      <Button variant="gray" size="1">
-        Gray size 1
-      </Button>
-      <Button variant="blue" size="0">
-        Blue size 0
-      </Button>
-      <Button variant="blue" size="1">
-        Blue size 1
-      </Button>
-      <Button variant="green" size="0">
-        Green size 0
-      </Button>
-      <Button variant="green" size="1">
-        Green size 1
-      </Button>
-      <Button variant="red" size="0">
-        Red size 0
-      </Button>
-      <Button variant="red" size="1">
-        Red size 1
-      </Button>
-      <Text size="0">What I talk about when I talk about running</Text>
-      <Text size="1">What I talk about when I talk about running</Text>
-      <Text size="2">What I talk about when I talk about running</Text>
-      <Text size="3">What I talk about when I talk about running</Text>
-      <Text size="4">What I talk about when I talk about running</Text>
-      <Text size="5">What I talk about when I talk about running</Text>
-      <Text size="6">What I talk about when I talk about running</Text>
-      <Text size="7">What I talk about when I talk about running</Text>
-      <Text size="8">What I talk about when I talk about running</Text>
-      <Text size="9">What I talk about when I talk about running</Text>
-      <Text size="10">What I talk about when I talk about running</Text>
-      {/* <Text size="10" className={size5}>
-        What I talk about when I talk about running
-      </Text>
-      <Text size="10" className={colorRedSize5}>
-        What I talk about when I talk about running
-      </Text> */}
-      <Badge variant="gray">Gray</Badge>
-      <Badge variant="blue">Gray</Badge>
-      <Badge variant="green">Gray</Badge>
-      <Badge variant="red">Gray</Badge>
-      <Badge variant="yellow">Gray</Badge>
-      <Input size="0" value="bye@hey.com" />
-      <Input size="1" value="bye@hey.com" />
-    </Grid>
+      <Box
+        styled={styled({
+          display: 'grid',
+          gap: '20px',
+          gridTemplateColumns: 'repeat(4, min-content)',
+          marginBottom: 4,
+        })}
+      >
+        <Button size="1">Default button</Button>
+        <Button size="1" variant="blue">
+          Blue button
+        </Button>
+        <Button size="1" variant="green">
+          Green button
+        </Button>
+        <Button size="1" variant="red">
+          Red button
+        </Button>
+      </Box>
+
+      <Box
+        styled={styled({
+          marginBottom: 4,
+        })}
+      >
+        <IconButton>
+          <ChatBubbleIcon />
+        </IconButton>
+      </Box>
+
+      <Box
+        styled={styled({
+          maxWidth: '300px',
+          marginBottom: 4,
+        })}
+      >
+        <Slider />
+        <Slider disabled />
+      </Box>
+
+      <Box
+        styled={styled({
+          display: 'grid',
+          gap: '20px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        })}
+      >
+        <Alert>Your browser is outdated! Your Chakra experience may be degraded.</Alert>
+        <Alert variant="blue">
+          Your browser is outdated! Your Chakra experience may be degraded.
+        </Alert>
+        <Alert variant="red">
+          Your browser is outdated! Your Chakra experience may be degraded.
+        </Alert>
+        <Alert variant="green">
+          Your browser is outdated! Your Chakra experience may be degraded.
+        </Alert>
+        <Alert variant="yellow">
+          Your browser is outdated! Your Chakra experience may be degraded.
+        </Alert>
+      </Box>
+
+      <Box>
+        <Text size="0">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="0">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="1">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="1">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="2">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="2">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="3">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="3">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="4">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="4">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="5">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="5">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="6">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="6">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="7">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="7">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="8">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="8">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="9">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="9">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="10">What I talk about when I talk about running</Text>
+        <Text weight="bold" size="10">
+          What I talk about when I talk about running
+        </Text>
+        <Text size="10" as="span" styled={styled({ color: 'blue600' })}>
+          I
+        </Text>{' '}
+        <Text size="10" as="span" styled={styled({ color: 'blue600' })}>
+          can
+        </Text>{' '}
+        <Text size="10" as="span" styled={styled({ color: 'yellow600' })}>
+          be
+        </Text>{' '}
+        <Text size="10" as="span" styled={styled({ color: 'yellow600' })}>
+          colourful
+        </Text>{' '}
+        <Text size="10" as="span" styled={styled({ color: 'green600' })}>
+          too!
+        </Text>
+      </Box>
+    </div>
   );
 }
