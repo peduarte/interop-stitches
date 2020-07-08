@@ -2,12 +2,11 @@ import { styled, theme } from './css';
 
 export const Grid = styled.div({
   display: 'grid',
-  gap: '4',
+  gap: '10px',
 });
 
 export const Button = styled.button(
   {
-    appearance: 'none',
     border: 'none',
     backgroundColor: 'transparent',
     width: 'min-content',
@@ -96,7 +95,7 @@ export const Button = styled.button(
     },
     size: {
       0: {
-        fontSize: 1,
+        fontSize: '1',
         paddingLeft: 2,
         paddingRight: 2,
         minWidth: 5,
@@ -104,7 +103,7 @@ export const Button = styled.button(
         letterSpacing: '-0.005em',
       },
       1: {
-        fontSize: 2,
+        fontSize: '2',
         paddingLeft: 3,
         paddingRight: 3,
         minWidth: 6,
@@ -115,6 +114,7 @@ export const Button = styled.button(
   }
 );
 
+// @ts-ignore
 Button.defaultProps = {
   color: 'gray',
   size: '0',
@@ -186,11 +186,21 @@ export const Text = styled.h1(
         letterSpacing: '-0.055em',
       },
     },
+    weight: {
+      normal: {
+        fontWeight: 'normal',
+      },
+      bold: {
+        fontWeight: 'bold',
+      },
+    },
   }
 );
 
+// @ts-ignore
 Text.defaultProps = {
   size: 5,
+  weight: 'normal',
 };
 
 export const Badge = styled.span(
@@ -239,6 +249,7 @@ export const Badge = styled.span(
   }
 );
 
+// @ts-ignore
 Badge.defaultProps = { variant: 'gray' };
 
 export const Input = styled.input(
@@ -282,6 +293,27 @@ export const Input = styled.input(
   }
 );
 
+// @ts-ignore
 Input.defaultProps = {
   size: 0,
 };
+
+export const Space = styled.div(
+  {},
+  {
+    size: {
+      0: {
+        height: 0,
+      },
+      1: {
+        height: 1,
+      },
+      2: {
+        height: 2,
+      },
+      3: {
+        height: 3,
+      },
+    },
+  }
+);

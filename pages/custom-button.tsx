@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { styled, theme, css, tailwind } from '../css';
+import { styled, theme, css, tailwind, chakra } from '../css';
 import { Grid, Button, Text, Badge, Input } from '../components';
 
 const fancyButton = styled({
@@ -25,6 +25,7 @@ export default function Home() {
       <div style={{ position: 'fixed', right: 20, top: 20 }}>
         <Button onClick={() => setTheme(undefined)}>Radix</Button>
         <Button onClick={() => setTheme(tailwind)}>Tailwind</Button>
+        <Button onClick={() => setTheme(chakra)}>Chakra</Button>
       </div>
 
       <div style={{ margin: 120 }}>

@@ -935,20 +935,20 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@stitches/css@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-3.0.2.tgz#e02b8e440dd76932aa8590275c13ca43269ce060"
-  integrity sha512-3vNniBNHiy/ZnaDw6vrGL9ZufNaiDwHGmZc9I+0RUqfERZmZYvj5wJaKPwWoIy2nGH9qQF+KgLAqqWnHg38LcA==
+"@stitches/css@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-3.0.3.tgz#352b409ff7aed9cfec76f29181684ddc7b250f96"
+  integrity sha512-1AkMEd0pi3XcgllFiYdXUxrJRELDtWHdoOziLrToji2TGvZKLEyZ5F3z66KabKks3DG1WrywHQWxGoNAyb5Www==
   dependencies:
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 
-"@stitches/styled@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-3.0.2.tgz#74e42abaaf621a0ce0ab39fa8b911af69d120500"
-  integrity sha512-1D2OTIMasm19d2SAKcMd0Qjnytx5Xcucv0ZBZmNXuCkpXGrsWUMg8ahp1o6OiX395BdV/gksSTCXELkhS/h35A==
+"@stitches/styled@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-3.0.3.tgz#62cbd351a62d87a5014b20c8bab1de74571fa53e"
+  integrity sha512-Uo95zTi1xgTvz4xkXRczBoPgyhtMWDIjA08MVcvQ7skzV3S5r192F4M8xIpNaO/724v4TMZOwJGclxyDBg50EQ==
   dependencies:
-    "@stitches/css" "^3.0.2"
+    "@stitches/css" "^3.0.3"
     "@types/node" "^13.11.1"
     react-polymorphic-box "^1.1.0"
     tslib "^1.11.1"
