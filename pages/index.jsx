@@ -47,15 +47,15 @@ export default function Home() {
           marginBottom: 4,
         })}
       >
-        <Button size="1">Default button</Button>
+        <Button size="1">Default large button</Button>
         <Button size="1" variant="blue">
-          Blue button
+          Blue large button
         </Button>
         <Button size="1" variant="green">
-          Green button
+          Green large button
         </Button>
         <Button size="1" variant="red">
-          Red button
+          Red large button
         </Button>
       </Box>
 
