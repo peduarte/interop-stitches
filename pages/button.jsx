@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div style={{ margin: 160 }}>
       <Head>
-        <title>Demo</title>
+        <title>Responsive button</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

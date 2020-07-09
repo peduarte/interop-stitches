@@ -1,7 +1,7 @@
 import React from 'react';
 import { CrossIcon, CheckIcon } from '@modulz/radix-icons';
 import { Combobox as ComboboxPrimitive, styles } from '../primitives/Combobox';
-import { styled } from '../css';
+import { styled, css } from '../css';
 import { theme } from '../theme';
 import { Input } from './Input';
 import { MenuPanel } from './MenuPanel';
@@ -12,7 +12,7 @@ export const Combobox = (props) => (
     <ComboboxPrimitive.Input use={Input} placeholder="Combobox" size="1" />
     <ComboboxPrimitive.Panel
       use={MenuPanel}
-      styled={{ position: 'absolute', top: '100%', mt: 2, width: '100%' }}
+      styled={css({ position: 'absolute', top: '100%', mt: 2, width: '100%' })}
     >
       <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 1</ComboboxPrimitive.MenuItem>
       <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 2</ComboboxPrimitive.MenuItem>

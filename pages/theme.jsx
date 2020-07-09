@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { styled, tailwind, chakra } from '../css';
+import { styled, css, tailwind, chakra } from '../css';
 import { Box } from '../components/Box';
 import { Button } from '../components/Button';
 import { IconButton } from '../components/IconButton';
@@ -25,14 +25,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box
-        styled={{
+        styled={css({
           display: 'grid',
           gap: '10px',
           gridTemplateColumns: 'repeat(4, min-content)',
           marginBottom: 6,
-        }}
+        })}
       >
-        <Text styled={{ gridColumn: '1/-1' }}>Cheese a theme:</Text>
+        <Text styled={css({ gridColumn: '1/-1' })}>Cheese a theme:</Text>
         <Button disabled={theme === undefined} onClick={() => setTheme(undefined)}>
           Radix
         </Button>
@@ -44,15 +44,15 @@ export default function Home() {
         </Button>
       </Box>
       <Box
-        styled={{
+        styled={css({
           display: 'grid',
           gap: '20px',
           maxWidth: '360px',
           marginBottom: 4,
-        }}
+        })}
       >
         <Alert>
-          <Text weight="bold" styled={{ mb: 1 }}>
+          <Text weight="bold" styled={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -61,7 +61,7 @@ export default function Home() {
         </Alert>
 
         <Alert variant="blue">
-          <Text weight="bold" styled={{ mb: 1 }}>
+          <Text weight="bold" styled={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -69,7 +69,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="red">
-          <Text weight="bold" styled={{ mb: 1 }}>
+          <Text weight="bold" styled={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -77,7 +77,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="green">
-          <Text weight="bold" styled={{ mb: 1 }}>
+          <Text weight="bold" styled={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -85,7 +85,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="yellow">
-          <Text weight="bold" styled={{ mb: 1 }}>
+          <Text weight="bold" styled={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">

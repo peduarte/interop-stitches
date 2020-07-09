@@ -940,20 +940,20 @@
   resolved "https://registry.yarnpkg.com/@modulz/radix-icons/-/radix-icons-2.4.0.tgz#62bb73265d39aa990a3adfb089f00cecbaf791c5"
   integrity sha512-19pLQSJtzVtlOon86QC3gigjoigumIvAch79wXl3/yyaWsip6n2CgPHKu/5hKhjK2qYCr84b0VmZkmj1krAl/w==
 
-"@stitches/css@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-3.0.4.tgz#61df487d80acc85e4086a9fd0ff649a20d205f2b"
-  integrity sha512-CQJ54lwBMJrKTvlXA7elVfOcFQhnaamHfXGXrIAZJYycqfyK/DTMz12yMvU1p5y6y3bpJSFVlFyj7cgupsksrA==
+"@stitches/css@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-5.0.0.tgz#ded98e2e8d13a2adebc7ff9b7ccca5bbe3e5f20f"
+  integrity sha512-iqFc6FkZgprY8P2smvSI1jnjTTb+nObgcSRQrOB3lAs2b6Svfe5yF5fH97XEN2w8pCSHcOx7HbOmfphCBrWoCQ==
   dependencies:
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 
-"@stitches/styled@^3.0.4":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-3.0.4.tgz#10a3f8f771c111df161965f0c91e51566249a922"
-  integrity sha512-1rNnYpnGiMZxi3EJ69iLhag7APv25oPvmxIS1zUaQU0itWEJRFcUTTbXu5dELxhPEk7RTGpUPTqtTKH+/obuyw==
+"@stitches/styled@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.0.0.tgz#d2c639a3abc3f63ccd21b09846770546d95bcbc8"
+  integrity sha512-alSWrR0c9YmoyMJRNCUp1NKopXQCUKhRMxth+QqjZ5/QLowc0sQy6zCPA+5XbxoaRGAM7WBsKZeJZjaKA3rVYg==
   dependencies:
-    "@stitches/css" "^3.0.4"
+    "@stitches/css" "^5.0.0"
     "@types/node" "^13.11.1"
     react-polymorphic-box "^1.1.0"
     tslib "^1.11.1"

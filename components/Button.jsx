@@ -79,7 +79,7 @@ export const Button = styled(
         boxShadow: `inset 0 0 0 1px ${theme.colors.gray400}`,
         color: 'red700',
         ':hover': {
-          backgroundColor: 'red10',
+          backgroundColor: 'red100',
           boxShadow: `inset 0 0 0 1px ${theme.colors.red400}`,
         },
         ':active': {
