@@ -8,7 +8,6 @@ const StyledText = styled.div(
     ...styles.text,
     fontFamily: 'normal',
     fontVariantNumeric: 'tabular-nums',
-    color: 'gray800',
     margin: 0,
   },
   {

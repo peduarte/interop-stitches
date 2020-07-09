@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Text = ({ use: Component = 'div', ...props }) => (
-  <Component data-component-text {...props} />
+  <Component {...props} data-component-text />
 );
 
 export const styles = {

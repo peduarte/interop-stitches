@@ -1,4 +1,6 @@
-export const theme = {
+import { ITokensDefinition } from './css/stitches/css';
+
+export const theme: ITokensDefinition = {
   fonts: {
     normal: 'UntitledSans, -apple-system, BlinkMacSystemFont, helvetica, arial, sans-serif',
     mono: 'RadixDuo, Menlo, Consolas, monospace',

@@ -11,6 +11,18 @@ export const css = createCss({
     bg: (utilCss) => (value: number | string, pseudo?: string) => {
       return utilCss.backgroundColor(value, pseudo);
     },
+    mt: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.marginTop(value, pseudo);
+    },
+    mr: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.marginRight(value, pseudo);
+    },
+    mb: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.marginBottom(value, pseudo);
+    },
+    ml: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.marginLeft(value, pseudo);
+    },
     marginX: (utilCss) => (value: number | string, pseudo?: string) => {
       return utilCss.compose(utilCss.marginLeft(value, pseudo), utilCss.marginRight(value, pseudo));
     },
@@ -22,6 +34,18 @@ export const css = createCss({
     },
     my: (utilCss) => (value: number | string, pseudo?: string) => {
       return utilCss.compose(utilCss.marginTop(value, pseudo), utilCss.marginBottom(value, pseudo));
+    },
+    pt: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.paddingTop(value, pseudo);
+    },
+    pr: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.paddingRight(value, pseudo);
+    },
+    pb: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.paddingBottom(value, pseudo);
+    },
+    pl: (utilCss) => (value: number | string, pseudo?: string) => {
+      return utilCss.paddingLeft(value, pseudo);
     },
     paddingX: (utilCss) => (value: number | string, pseudo?: string) => {
       return utilCss.compose(
@@ -47,6 +71,12 @@ export const css = createCss({
         utilCss.paddingBottom(value, pseudo)
       );
     },
+  },
+  screens: {
+    small: (rule) => rule,
+    medium: (rule) => `@media (min-width: 600px) { ${rule} }`,
+    large: (rule) => `@media (min-width: 1000px) { ${rule} }`,
+    xlarge: (rule) => `@media (min-width: 1080px) { ${rule} }`,
   },
 });
 

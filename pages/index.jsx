@@ -8,6 +8,10 @@ import { IconButton } from '../components/IconButton';
 import { Slider } from '../components/Slider';
 import { Alert } from '../components/Alert';
 import { Text } from '../components/Text';
+import { MenuItem } from '../components/MenuItem';
+import { MenuPanel } from '../components/MenuPanel';
+import { Menu } from '../components/Menu';
+import { Input } from '../components/Input';
 
 export default function Home() {
   React.useEffect(() => {
@@ -26,26 +30,26 @@ export default function Home() {
       </Head>
 
       <Box
-        styled={styled({
+        styled={{
           display: 'grid',
           gap: '20px',
           gridTemplateColumns: 'repeat(4, min-content)',
           marginBottom: 4,
-        })}
+        }}
       >
-        <Button>Default button</Button>
+        <Button variant={{ large: 'red' }}>Default button</Button>
         <Button variant="blue">Blue button</Button>
         <Button variant="green">Green button</Button>
         <Button variant="red">Red button</Button>
       </Box>
 
       <Box
-        styled={styled({
+        styled={{
           display: 'grid',
           gap: '20px',
           gridTemplateColumns: 'repeat(4, min-content)',
           marginBottom: 4,
-        })}
+        }}
       >
         <Button size="1">Default large button</Button>
         <Button size="1" variant="blue">
@@ -60,9 +64,9 @@ export default function Home() {
       </Box>
 
       <Box
-        styled={styled({
+        styled={{
           marginBottom: 4,
-        })}
+        }}
       >
         <IconButton>
           <ChatBubbleIcon />
@@ -70,39 +74,16 @@ export default function Home() {
       </Box>
 
       <Box
-        styled={styled({
+        styled={{
           maxWidth: '300px',
           marginBottom: 4,
-        })}
+        }}
       >
         <Slider />
         <Slider disabled />
       </Box>
 
-      <Box
-        styled={styled({
-          display: 'grid',
-          gap: '20px',
-          maxWidth: '300px',
-          marginBottom: 4,
-        })}
-      >
-        <Alert>Your browser is outdated! Your Chakra experience may be degraded.</Alert>
-        <Alert variant="blue">
-          Your browser is outdated! Your Chakra experience may be degraded.
-        </Alert>
-        <Alert variant="red">
-          Your browser is outdated! Your Chakra experience may be degraded.
-        </Alert>
-        <Alert variant="green">
-          Your browser is outdated! Your Chakra experience may be degraded.
-        </Alert>
-        <Alert variant="yellow">
-          Your browser is outdated! Your Chakra experience may be degraded.
-        </Alert>
-      </Box>
-
-      <Box>
+      <Box styled={{ mb: 4 }}>
         <Text size="0">What I talk about when I talk about running</Text>
         <Text weight="bold" size="0">
           What I talk about when I talk about running
@@ -147,21 +128,139 @@ export default function Home() {
         <Text weight="bold" size="10">
           What I talk about when I talk about running
         </Text>
-        <Text size="10" as="span" styled={styled({ color: 'blue600' })}>
+        <Text size="10" as="span" styled={{ color: 'blue600' }}>
           I
         </Text>{' '}
-        <Text size="10" as="span" styled={styled({ color: 'blue600' })}>
+        <Text size="10" as="span" styled={{ color: 'blue600' }}>
           can
         </Text>{' '}
-        <Text size="10" as="span" styled={styled({ color: 'yellow600' })}>
+        <Text size="10" as="span" styled={{ color: 'yellow600' }}>
           be
         </Text>{' '}
-        <Text size="10" as="span" styled={styled({ color: 'yellow600' })}>
+        <Text size="10" as="span" styled={{ color: 'yellow600' }}>
           colourful
         </Text>{' '}
-        <Text size="10" as="span" styled={styled({ color: 'green600' })}>
+        <Text size="10" as="span" styled={{ color: 'green600' }}>
           too!
         </Text>
+      </Box>
+
+      <Box
+        styled={{
+          display: 'grid',
+          gap: '20px',
+          maxWidth: '600px',
+          marginBottom: 4,
+        }}
+      >
+        <Alert>
+          <Text weight="bold" styled={{ mb: 2 }}>
+            Your browser is outdated!
+          </Text>
+          <Text as="p" size="3">
+            Your Chakra experience may be degraded.
+          </Text>
+        </Alert>
+        <Alert variant="blue">
+          <Text weight="bold" styled={{ mb: 2 }}>
+            Your browser is outdated!
+          </Text>
+          <Text as="p" size="3">
+            Your Chakra experience may be degraded.
+          </Text>
+        </Alert>
+        <Alert variant="red">
+          <Text weight="bold" styled={{ mb: 2 }}>
+            Your browser is outdated!
+          </Text>
+          <Text as="p" size="3">
+            Your Chakra experience may be degraded.
+          </Text>
+        </Alert>
+        <Alert variant="green">
+          <Text weight="bold" styled={{ mb: 2 }}>
+            Your browser is outdated!
+          </Text>
+          <Text as="p" size="3">
+            Your Chakra experience may be degraded.
+          </Text>
+        </Alert>
+        <Alert variant="yellow">
+          <Text weight="bold" styled={{ mb: 2 }}>
+            Your browser is outdated!
+          </Text>
+          <Text as="p" size="3">
+            Your Chakra experience may be degraded.
+          </Text>
+        </Alert>
+      </Box>
+
+      <Box
+        styled={{
+          display: 'grid',
+          gap: '10px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        }}
+      >
+        <MenuItem>
+          <Text size={1}>Menu item</Text>
+        </MenuItem>
+        <MenuItem>
+          <Text size={1}>Menu item</Text>
+        </MenuItem>
+        <MenuItem disabled>
+          <Text size={1}>Menu item disabled</Text>
+        </MenuItem>
+      </Box>
+
+      <Box
+        styled={{
+          display: 'grid',
+          gap: '10px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        }}
+      >
+        <MenuPanel>
+          <Box styled={{ height: '100px' }} />
+        </MenuPanel>
+      </Box>
+
+      <Box
+        styled={{
+          display: 'grid',
+          gap: '10px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        }}
+      >
+        <Menu>
+          <Menu.Item>
+            <Text size={1}>Orange</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text size={1}>Apple</Text>
+          </Menu.Item>
+          <Menu.Item disabled>
+            <Text size={1}>Pear</Text>
+          </Menu.Item>
+          <Menu.Item>
+            <Text size={1}>Passion fruit</Text>
+          </Menu.Item>
+        </Menu>
+      </Box>
+
+      <Box
+        styled={{
+          display: 'grid',
+          gap: '10px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        }}
+      >
+        <Input value="bye@hey.com" onChange={() => null} />
+        <Input size="1" value="bye@hey.com" onChange={() => null} />
       </Box>
     </div>
   );

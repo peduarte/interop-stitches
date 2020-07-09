@@ -85,6 +85,22 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
       // Make a copy of the baseComposition
       // e.g. combination of baseStyles + props.styled if present
       const compositions = memoComposition.base.slice();
+      const responsive = [];
+      for (const propName in props) {
+        if (!(propName in variants)) continue;
+        if (typeof props[propName] === 'object') {
+          for (let screen in props[propName]) {
+            const variant = props[propName][screen];
+            responsive.push(polymorphicCss({ [screen]: variants[propName][variant] }));
+          }
+        }
+        if (props[propName] in variants[propName]) {
+          const name = evaluatedVariantMap.get(propName)?.get(props[propName]);
+          if (name) {
+            compositions.push(name);
+          }
+        }
+      }
 
       for (const propName in props) {
         if (propName in variants && props[propName] in variants[propName]) {
@@ -95,7 +111,7 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
         }
       }
 
-      const className = css.compose(...compositions);
+      const className = css.compose(...compositions, ...responsive);
 
       return React.createElement(Box, {
         as,

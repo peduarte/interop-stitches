@@ -5,7 +5,11 @@ export const Alert = ({ use: Component = 'div', ...props }) => (
 );
 
 const AlertCloseButton = ({ use: Component = 'button', ...props }) => (
-  <Component {...props} onClick={() => alert('close')} data-component-alert-close-button />
+  <Component
+    {...props}
+    onClick={() => alert('primitive functionality')}
+    data-component-alert-close-button
+  />
 );
 
 Alert.CloseButton = AlertCloseButton;

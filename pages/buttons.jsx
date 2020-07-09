@@ -25,7 +25,7 @@ export default function Home() {
           display: 'grid',
           gap: '20px',
           gridTemplateColumns: 'repeat(4, min-content)',
-          marginBottom: 4,
+          marginBottom: '4',
         })}
       >
         <Button>Default button</Button>
@@ -39,7 +39,7 @@ export default function Home() {
           display: 'grid',
           gap: '20px',
           gridTemplateColumns: 'repeat(4, min-content)',
-          marginBottom: 4,
+          marginBottom: '4',
         })}
       >
         <Button size="1">Default large button</Button>
