@@ -7,7 +7,6 @@ export const Button = styled(
   ButtonPrimitive,
   {
     ...styles.button,
-    backgroundColor: 'transparent',
     width: 'min-content',
     display: 'inline-flex',
     alignItems: 'center',

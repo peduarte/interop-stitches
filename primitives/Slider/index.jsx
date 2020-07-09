@@ -7,7 +7,6 @@ export const Slider = ({ use: Component = 'span', disabled, ...props }) => {
 const SliderTrack = ({ use: Component = 'span', ...props }) => {
   return <Component {...props} data-component-slider-track />;
 };
-SliderTrack.toString = () => 'data-component-slider-track';
 
 const SliderRange = ({ use: Component = 'span', ...props }) => {
   return <Component {...props} data-component-slider-range />;

@@ -13,7 +13,6 @@ import { MenuPanel } from '../components/MenuPanel';
 import { Menu } from '../components/Menu';
 import { Input } from '../components/Input';
 import { Combobox } from '../components/Combobox';
-import { width50 } from '../utils';
 
 export default function Home() {
   React.useEffect(() => {
@@ -30,11 +29,12 @@ export default function Home() {
         <title>Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Box
         styled={{
           display: 'grid',
           marginBottom: 4,
-          gridTemplateColumns: 'repeat(4, min-content)',
+          gridTemplateColumns: 'repeat(1, min-content)',
           gap: '20px',
         }}
       >
@@ -121,7 +121,7 @@ export default function Home() {
           marginBottom: 4,
         }}
       >
-        <Alert className={width50}>
+        <Alert>
           <Text weight="bold" styled={{ mb: 1 }}>
             Cool alert title.
           </Text>

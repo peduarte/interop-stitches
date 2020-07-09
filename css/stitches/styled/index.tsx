@@ -79,6 +79,8 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
       // e.g. combination of baseStyles + props.styled if present
       const compositions = memoComposition.base.slice();
       const responsive = [];
+      const propsWithoutVariants: any = {};
+
       for (const propName in props) {
         if (!(propName in extendedVariants)) continue;
         if (typeof props[propName] === 'object') {
@@ -91,6 +93,8 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
           const name = evaluatedVariantMap.get(propName)?.get(props[propName]);
           if (name) {
             compositions.push(name);
+          } else {
+            propsWithoutVariants[propName] = props[propName];
           }
         }
       }
@@ -98,6 +102,7 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
       return React.createElement(Box, {
         as,
         ...props,
+        ...propsWithoutVariants,
         className: props.className ? `${props.className} ${className}` : className,
       });
     };

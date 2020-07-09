@@ -93,7 +93,6 @@ export default function Home() {
           </Text>
         </Alert>
       </Box>
-      \
     </div>
   );
 }

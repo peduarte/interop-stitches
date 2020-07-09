@@ -21,20 +21,20 @@ const StyledSlider = styled(SliderPrimitive, {
   },
 });
 
-const StyledTrack = styled('span', {
+const Track = styled(SliderPrimitive.Track, {
   ...styles.track,
   backgroundColor: theme.colors.gray400,
   height: '2px',
   borderRadius: 1,
 });
 
-const StyledRange = styled('span', {
+const Range = styled(SliderPrimitive.Range, {
   ...styles.range,
   backgroundColor: theme.colors.blue600,
   borderRadius: 'inherit',
 });
 
-const StyledThumb = styled('span', {
+const Thumb = styled(SliderPrimitive.Thumb, {
   ...styles.thumb,
   height: '12px',
   width: '12px',
@@ -45,9 +45,9 @@ const StyledThumb = styled('span', {
 
 export const Slider = (props) => (
   <StyledSlider {...props}>
-    <SliderPrimitive.Track use={StyledTrack}>
-      <SliderPrimitive.Range use={StyledRange} />
-      <SliderPrimitive.Thumb use={StyledThumb} />
-    </SliderPrimitive.Track>
+    <Track>
+      <Range />
+      <Thumb />
+    </Track>
   </StyledSlider>
 );
