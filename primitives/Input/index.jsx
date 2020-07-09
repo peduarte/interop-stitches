@@ -9,5 +9,6 @@ export const styles = {
     appearance: 'none',
     border: 0,
     outline: 0,
+    boxSizing: 'border-box',
   },
 };

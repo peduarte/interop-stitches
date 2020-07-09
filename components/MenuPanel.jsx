@@ -3,7 +3,7 @@ import { MenuPanel as MenuPanelPrimitive, styles } from '../primitives/MenuPanel
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledMenuPanel = styled.div({
+const StyledMenuPanel = styled('div', {
   ...styles.menuPanel,
   py: 1,
   backgroundColor: 'white',

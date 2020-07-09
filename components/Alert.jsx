@@ -5,7 +5,8 @@ import { styled } from '../css';
 import { theme } from '../theme';
 import { IconButton } from './IconButton';
 
-const StyledAlert = styled.div(
+const StyledAlert = styled(
+  'div',
   {
     ...styles.alert,
     position: 'relative',
@@ -47,11 +48,11 @@ StyledAlert.defaultProps = {
   variant: 'gray',
 };
 
-const positionStyles = styled({
+const positionStyles = {
   position: 'absolute',
   right: '10px',
   top: '10px',
-});
+};
 
 export const Alert = (props) => (
   <AlertPrimitive use={StyledAlert} {...props}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CrossIcon } from '@modulz/radix-icons';
+import { CrossIcon, CheckIcon } from '@modulz/radix-icons';
 import { Menu as MenuPrimitive, styles } from '../primitives/Menu';
 import { styled } from '../css';
 import { theme } from '../theme';
@@ -12,6 +12,11 @@ export const Menu = (props) => (
   </MenuPrimitive>
 );
 
-const MenuItem = (props) => <MenuPrimitive.Item use={MenuItemPart} {...props} />;
+const MenuItem = (props) => (
+  <MenuPrimitive.Item use={MenuItemPart} {...props}>
+    <MenuPrimitive.Icon use={CheckIcon} {...props} style={{ marginRight: '5px' }} />
+    {props.children}
+  </MenuPrimitive.Item>
+);
 
 Menu.Item = MenuItem;

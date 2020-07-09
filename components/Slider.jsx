@@ -3,7 +3,7 @@ import { Slider as SliderPrimitive, styles } from '../primitives/Slider';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledSlider = styled.span({
+const StyledSlider = styled('span', {
   ...styles.slider,
   paddingTop: 3,
   paddingBottom: 3,
@@ -21,20 +21,20 @@ const StyledSlider = styled.span({
   },
 });
 
-const StyledTrack = styled.span({
+const StyledTrack = styled('span', {
   ...styles.track,
   backgroundColor: theme.colors.gray400,
   height: '2px',
   borderRadius: 1,
 });
 
-const StyledRange = styled.span({
+const StyledRange = styled('span', {
   ...styles.range,
   backgroundColor: theme.colors.blue600,
   borderRadius: 'inherit',
 });
 
-const StyledThumb = styled.span({
+const StyledThumb = styled('span', {
   ...styles.thumb,
   height: '12px',
   width: '12px',

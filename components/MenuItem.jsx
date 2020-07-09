@@ -3,7 +3,7 @@ import { MenuItem as MenuItemPrimitive, styles } from '../primitives/MenuItem';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledMenuItem = styled.button({
+const StyledMenuItem = styled('button', {
   ...styles.menuItem,
   display: 'inline-flex',
   alignItems: 'center',

@@ -3,7 +3,8 @@ import { Text as TextPrimitive, styles } from '../primitives/Text';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledText = styled.div(
+const StyledText = styled(
+  'div',
   {
     ...styles.text,
     fontFamily: 'normal',
@@ -70,10 +71,10 @@ const StyledText = styled.div(
     },
     weight: {
       normal: {
-        fontWeight: 'normal',
+        fontWeight: '400',
       },
       bold: {
-        fontWeight: 'bold',
+        fontWeight: '500',
       },
     },
   }

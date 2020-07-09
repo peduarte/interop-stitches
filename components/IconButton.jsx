@@ -3,7 +3,7 @@ import { Button as ButtonPrimitive, styles } from '../primitives/Button';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledButton = styled.button({
+const StyledButton = styled('button', {
   ...styles.button,
   borderRadius: '9999px',
   color: 'gray800',
