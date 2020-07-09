@@ -21,12 +21,3 @@ export const Combobox = (props) => (
     </ComboboxPrimitive.Panel>
   </ComboboxPrimitive>
 );
-
-// const MenuItem = (props) => (
-//   <MenuPrimitive.Item use={MenuItemPart} {...props}>
-//     <MenuPrimitive.Icon use={CheckIcon} {...props} style={{ marginRight: '5px' }} />
-//     {props.children}
-//   </MenuPrimitive.Item>
-// );
-
-// Menu.Item = MenuItem;

@@ -3,7 +3,7 @@ import { Slider as SliderPrimitive, styles } from '../primitives/Slider';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledSlider = styled('span', {
+const StyledSlider = styled(SliderPrimitive, {
   ...styles.slider,
   paddingTop: 3,
   paddingBottom: 3,
@@ -44,10 +44,10 @@ const StyledThumb = styled('span', {
 });
 
 export const Slider = (props) => (
-  <SliderPrimitive use={StyledSlider} {...props}>
+  <StyledSlider {...props}>
     <SliderPrimitive.Track use={StyledTrack}>
       <SliderPrimitive.Range use={StyledRange} />
       <SliderPrimitive.Thumb use={StyledThumb} />
     </SliderPrimitive.Track>
-  </SliderPrimitive>
+  </StyledSlider>
 );

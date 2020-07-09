@@ -3,7 +3,7 @@ import { MenuItem as MenuItemPrimitive, styles } from '../primitives/MenuItem';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledMenuItem = styled('button', {
+export const MenuItem = styled(MenuItemPrimitive, {
   ...styles.menuItem,
   display: 'inline-flex',
   alignItems: 'center',
@@ -24,5 +24,3 @@ const StyledMenuItem = styled('button', {
     backgroundColor: 'white',
   },
 });
-
-export const MenuItem = (props) => <MenuItemPrimitive use={StyledMenuItem} {...props} />;

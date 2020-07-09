@@ -17,6 +17,11 @@ const StyledAlert = styled(
     paddingBottom: 4,
     paddingLeft: 5,
     paddingRight: 5,
+    // [IconButton]: {
+    //   position: 'absolute',
+    //   right: '10px',
+    //   top: '10px',
+    // },
   },
   {
     variant: {
@@ -48,15 +53,12 @@ StyledAlert.defaultProps = {
   variant: 'gray',
 };
 
-const positionStyles = {
-  position: 'absolute',
-  right: '10px',
-  top: '10px',
-};
-
 export const Alert = (props) => (
   <AlertPrimitive use={StyledAlert} {...props}>
-    <AlertPrimitive.CloseButton use={IconButton} styled={positionStyles}>
+    <AlertPrimitive.CloseButton
+      use={IconButton}
+      styled={{ position: 'absolute', right: '10px', top: '10px' }}
+    >
       <CrossIcon />
     </AlertPrimitive.CloseButton>
     {props.children}

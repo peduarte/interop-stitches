@@ -13,6 +13,7 @@ import { MenuPanel } from '../components/MenuPanel';
 import { Menu } from '../components/Menu';
 import { Input } from '../components/Input';
 import { Combobox } from '../components/Combobox';
+import { width50 } from '../utils';
 
 export default function Home() {
   React.useEffect(() => {
@@ -32,12 +33,12 @@ export default function Home() {
       <Box
         styled={{
           display: 'grid',
-          gap: '20px',
-          gridTemplateColumns: 'repeat(4, min-content)',
           marginBottom: 4,
+          gridTemplateColumns: 'repeat(4, min-content)',
+          gap: '20px',
         }}
       >
-        <Button variant={{ large: 'red' }}>Default button</Button>
+        <Button>Default button</Button>
         <Button variant="blue">Blue button</Button>
         <Button variant="green">Green button</Button>
         <Button variant="red">Red button</Button>
@@ -51,9 +52,7 @@ export default function Home() {
         }}
       >
         <Button size="1">Default large button</Button>
-        <Button size="1" variant="blue">
-          Blue large button
-        </Button>
+        <Button variant="blue">Blue large button</Button>
         <Button size="1" variant="green">
           Green large button
         </Button>
@@ -63,7 +62,7 @@ export default function Home() {
       </Box>
       <Box
         styled={{
-          marginBottom: 4,
+          width: '50%',
         }}
       >
         <IconButton>
@@ -113,6 +112,7 @@ export default function Home() {
           too!
         </Text>
       </Box>
+
       <Box
         styled={{
           display: 'grid',
@@ -121,7 +121,7 @@ export default function Home() {
           marginBottom: 4,
         }}
       >
-        <Alert>
+        <Alert className={width50}>
           <Text weight="bold" styled={{ mb: 1 }}>
             Cool alert title.
           </Text>
@@ -129,6 +129,7 @@ export default function Home() {
             Composition at its finest.
           </Text>
         </Alert>
+
         <Alert variant="blue">
           <Text weight="bold" styled={{ mb: 1 }}>
             Cool alert title.

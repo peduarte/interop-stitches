@@ -3,8 +3,8 @@ import { Input as InputPrimitive, styles } from '../primitives/Input';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledInput = styled(
-  'input',
+export const Input = styled(
+  InputPrimitive,
   {
     ...styles.input,
     fontFamily: 'normal',
@@ -44,6 +44,4 @@ const StyledInput = styled(
   }
 );
 
-StyledInput.defaultProps = { size: '0' };
-
-export const Input = (props) => <InputPrimitive use={StyledInput} {...props} />;
+Input.defaultProps = { size: '0' };

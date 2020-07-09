@@ -43,6 +43,7 @@ export const theme: ITokensDefinition = {
     9: '80px',
   },
   lineHeights: {
+    none: '1',
     0: '15px',
     1: '20px',
     2: '25px',

@@ -3,11 +3,10 @@ import { Button as ButtonPrimitive, styles } from '../primitives/Button';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledButton = styled(
-  'button',
+export const Button = styled(
+  ButtonPrimitive,
   {
     ...styles.button,
-    border: 'none',
     backgroundColor: 'transparent',
     width: 'min-content',
     display: 'inline-flex',
@@ -114,6 +113,4 @@ const StyledButton = styled(
   }
 );
 
-StyledButton.defaultProps = { size: '0', variant: 'gray' };
-
-export const Button = (props) => <ButtonPrimitive use={StyledButton} {...props} />;
+Button.defaultProps = { size: '0', variant: 'gray' };

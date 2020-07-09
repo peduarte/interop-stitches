@@ -4,7 +4,7 @@ import { Menu as MenuPrimitive, styles } from '../primitives/Menu';
 import { styled } from '../css';
 import { theme } from '../theme';
 import { MenuPanel } from './MenuPanel';
-import { MenuItem as MenuItemPart } from './MenuItem';
+import { MenuItem } from './MenuItem';
 
 export const Menu = (props) => (
   <MenuPrimitive use={MenuPanel} {...props}>
@@ -12,11 +12,12 @@ export const Menu = (props) => (
   </MenuPrimitive>
 );
 
-const MenuItem = (props) => (
-  <MenuPrimitive.Item use={MenuItemPart} {...props}>
+const _MenuItem = (props) => (
+  <MenuPrimitive.Item use={MenuItem} {...props}>
     <MenuPrimitive.Icon use={CheckIcon} {...props} style={{ marginRight: '5px' }} />
     {props.children}
   </MenuPrimitive.Item>
 );
 
-Menu.Item = MenuItem;
+Menu.Item = _MenuItem;
+Menu.Icon = _MenuItem;

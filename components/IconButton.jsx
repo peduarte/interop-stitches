@@ -3,7 +3,7 @@ import { Button as ButtonPrimitive, styles } from '../primitives/Button';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledButton = styled('button', {
+export const IconButton = styled(ButtonPrimitive, {
   ...styles.button,
   borderRadius: '9999px',
   color: 'gray800',
@@ -22,5 +22,4 @@ const StyledButton = styled('button', {
     boxShadow: `0 0 0 2px ${theme.colors.gray500}`,
   },
 });
-
-export const IconButton = (props) => <ButtonPrimitive use={StyledButton} {...props} />;
+IconButton.toString = () => ' [data-component-button]';
