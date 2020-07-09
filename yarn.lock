@@ -948,10 +948,10 @@
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 
-"@stitches/styled@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.0.0.tgz#d2c639a3abc3f63ccd21b09846770546d95bcbc8"
-  integrity sha512-alSWrR0c9YmoyMJRNCUp1NKopXQCUKhRMxth+QqjZ5/QLowc0sQy6zCPA+5XbxoaRGAM7WBsKZeJZjaKA3rVYg==
+"@stitches/styled@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.0.1.tgz#9b4cdc0b70f7d4c7708e6e905f6ea894ebfd7e4a"
+  integrity sha512-UFQy2xhlP1fIGxddi92/afCqjyb2O0kUa4qHkekmnd4SGz8Pk2LFltKviNyHJvZfioaFcfOgG0xdy2ExGYOlpQ==
   dependencies:
     "@stitches/css" "^5.0.0"
     "@types/node" "^13.11.1"
