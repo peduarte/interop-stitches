@@ -948,14 +948,14 @@
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 
-"@stitches/styled@5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.0.1.tgz#9b4cdc0b70f7d4c7708e6e905f6ea894ebfd7e4a"
-  integrity sha512-UFQy2xhlP1fIGxddi92/afCqjyb2O0kUa4qHkekmnd4SGz8Pk2LFltKviNyHJvZfioaFcfOgG0xdy2ExGYOlpQ==
+"@stitches/styled@5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.0.2.tgz#d47c1e7b6d25270425cb7dbe087c6d5d897b067c"
+  integrity sha512-B9bVs1C597yzWDwsePcazXt3hib+kvZKEluYAYhHgL/TaufUi/YtVQgEhgkwCJeXN2TNKOxXsvyw7+Goy4+4hQ==
   dependencies:
     "@stitches/css" "^5.0.0"
     "@types/node" "^13.11.1"
-    react-polymorphic-box "^1.1.0"
+    react-polymorphic-box "^2.0.3"
     tslib "^1.11.1"
 
 "@types/json-schema@^7.0.4":
@@ -4281,10 +4281,10 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-polymorphic-box@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-polymorphic-box/-/react-polymorphic-box-1.1.1.tgz#a88f5a7d132a891d091eb18d80864d8089f455a5"
-  integrity sha512-qhyZ8oBUeYZLxqHacYCpAca6zoiYnQ1Y6w7bPdfo0w5mf+aTkMM9SV+Es8uUv9rmEkZ9lSp5C0fRd0gH2VS77Q==
+react-polymorphic-box@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-polymorphic-box/-/react-polymorphic-box-2.0.3.tgz#8d67099c1b5e115b82af05a9516cbd763a02339e"
+  integrity sha512-zPVIiONps0sw+Ed0DlWyA0ofX1XQq7kfo8v2s2KVagNEsewmwaLXoPPmBUWiZs1Ag9WgTydZdK4s4+j35o97KA==
 
 react@16.13.1:
   version "16.13.1"
