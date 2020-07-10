@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Input = ({ use: Component = 'input', ...props }) => (
+export const Input = ({ as: Component = 'input', ...props }) => (
   <Component data-component-input {...props} />
 );
 

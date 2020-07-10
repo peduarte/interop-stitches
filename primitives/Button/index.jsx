@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Button = ({ use: Component = 'button', ...props }) => (
+export const Button = ({ as: Component = 'button', ...props }) => (
   <Component data-component-button {...props} />
 );
 

@@ -13,6 +13,7 @@ import { MenuPanel } from '../components/MenuPanel';
 import { Menu } from '../components/Menu';
 import { Input } from '../components/Input';
 import { Combobox } from '../components/Combobox';
+import { Card } from '../components/Card';
 
 export default function Home() {
   React.useEffect(() => {
@@ -238,6 +239,31 @@ export default function Home() {
         })}
       >
         <Combobox />
+      </Box>
+
+      <Box
+        styled={css({
+          display: 'grid',
+          gap: '10px',
+          maxWidth: '300px',
+          marginBottom: 4,
+        })}
+      >
+        <Card>
+          <Text>Defual tCard</Text>
+        </Card>
+
+        <Card variant="ghost">
+          <Text>Ghost Card</Text>
+        </Card>
+
+        <Card variant="ghost" as="a" href="https://modulz.app" target="_blank">
+          <Text>Ghost Card as link</Text>
+        </Card>
+
+        <Card variant="shadow">
+          <Text>Card title</Text>
+        </Card>
       </Box>
     </div>
   );

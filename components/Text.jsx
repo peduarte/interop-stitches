@@ -3,8 +3,8 @@ import { Text as TextPrimitive, styles } from '../primitives/Text';
 import { styled } from '../css';
 import { theme } from '../theme';
 
-const StyledText = styled(
-  'div',
+export const Text = styled(
+  TextPrimitive,
   {
     ...styles.text,
     fontFamily: 'normal',
@@ -80,6 +80,4 @@ const StyledText = styled(
   }
 );
 
-StyledText.defaultProps = { size: '4', weight: 'normal' };
-
-export const Text = (props) => <TextPrimitive use={StyledText} {...props} />;
+Text.defaultProps = { size: '4', weight: 'normal' };

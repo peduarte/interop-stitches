@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MenuPanel = ({ use: Component = 'div', ...props }) => (
+export const MenuPanel = ({ as: Component = 'div', ...props }) => (
   <Component data-component-menu-panel {...props} />
 );
 

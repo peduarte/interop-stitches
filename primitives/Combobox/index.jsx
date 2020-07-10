@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 const Context = React.createContext('');
 
-export const Combobox = ({ use: Component = 'div', ...props }) => {
+export const Combobox = ({ as: Component = 'div', ...props }) => {
   const value = useContext(Context);
   const context = React.useState('');
   return (
@@ -12,7 +12,7 @@ export const Combobox = ({ use: Component = 'div', ...props }) => {
   );
 };
 
-const ComboboxPanel = ({ use: Component = 'div', ...props }) => {
+const ComboboxPanel = ({ as: Component = 'div', ...props }) => {
   const [value] = useContext(Context);
 
   return value ? (
@@ -22,7 +22,7 @@ const ComboboxPanel = ({ use: Component = 'div', ...props }) => {
   ) : null;
 };
 
-const ComboboxInput = ({ use: Component = 'input', ...props }) => {
+const ComboboxInput = ({ as: Component = 'input', ...props }) => {
   const [value, setValue] = useContext(Context);
   return (
     <Component
@@ -34,7 +34,7 @@ const ComboboxInput = ({ use: Component = 'input', ...props }) => {
   );
 };
 
-const ComboboxMenuItem = ({ use: Component = 'div', ...props }) => {
+const ComboboxMenuItem = ({ as: Component = 'div', ...props }) => {
   return <Component {...props} data-component-combobox-menu-item />;
 };
 

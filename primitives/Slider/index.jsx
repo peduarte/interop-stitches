@@ -1,18 +1,18 @@
 import React from 'react';
 
-export const Slider = ({ use: Component = 'span', disabled, ...props }) => {
+export const Slider = ({ as: Component = 'span', disabled, ...props }) => {
   return <Component {...props} data-component-slider data-state-disabled={disabled} />;
 };
 
-const SliderTrack = ({ use: Component = 'span', ...props }) => {
+const SliderTrack = ({ as: Component = 'span', ...props }) => {
   return <Component {...props} data-component-slider-track />;
 };
 
-const SliderRange = ({ use: Component = 'span', ...props }) => {
+const SliderRange = ({ as: Component = 'span', ...props }) => {
   return <Component {...props} data-component-slider-range />;
 };
 
-const SliderThumb = ({ use: Component = 'span', ...props }) => {
+const SliderThumb = ({ as: Component = 'span', ...props }) => {
   return <Component {...props} data-component-slider-thumb />;
 };
 

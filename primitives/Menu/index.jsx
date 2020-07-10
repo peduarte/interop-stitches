@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 
 const Context = React.createContext(false);
 
-export const Menu = ({ use: Component = 'div', ...props }) => (
+export const Menu = ({ as: Component = 'div', ...props }) => (
   <Component {...props} data-component-menu />
 );
 
-const MenuItem = ({ use: Component = 'button', ...props }) => (
+const MenuItem = ({ as: Component = 'button', ...props }) => (
   <Component {...props} onClick={() => alert('primitive functionality')} data-component-menu-item>
     <Context.Provider value={props.selected}>{props.children}</Context.Provider>
   </Component>
 );
 
-const MenuIcon = ({ use: Component = 'svg', ...props }) => {
+const MenuIcon = ({ as: Component = 'svg', ...props }) => {
   const checked = useContext(Context);
   return (
     <Component

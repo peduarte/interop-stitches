@@ -6,7 +6,7 @@ import { theme } from '../theme';
 import { IconButton } from './IconButton';
 
 const StyledAlert = styled(
-  'div',
+  AlertPrimitive,
   {
     ...styles.alert,
     position: 'relative',
@@ -49,13 +49,13 @@ StyledAlert.defaultProps = {
 };
 
 export const Alert = (props) => (
-  <AlertPrimitive use={StyledAlert} {...props}>
+  <StyledAlert {...props}>
     <AlertPrimitive.CloseButton
-      use={IconButton}
+      as={IconButton}
       styled={css({ position: 'absolute', right: '10px', top: '10px' })}
     >
       <CrossIcon />
     </AlertPrimitive.CloseButton>
     {props.children}
-  </AlertPrimitive>
+  </StyledAlert>
 );

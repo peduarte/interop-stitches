@@ -1,7 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
+import { styled, css } from '../css';
+// import { Button } from '../components/Button';
 
-import { Button } from '../components/Button';
+// as prop type
+// type CSS values based on tokens
+
+const Button = styled('button', {
+  backgroundColor: '',
+});
 
 export default function Home() {
   React.useEffect(() => {
@@ -19,7 +26,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Button variant={{ small: 'blue', large: 'red' }}>Default button</Button>
+      <Button
+        variant={{ small: 'gray' }}
+        styled={css({
+          backgroundColor: '',
+          margin: '',
+        })}
+      >
+        Default button
+      </Button>
     </div>
   );
 }

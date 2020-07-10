@@ -7,14 +7,14 @@ import { MenuPanel } from './MenuPanel';
 import { MenuItem } from './MenuItem';
 
 export const Menu = (props) => (
-  <MenuPrimitive use={MenuPanel} {...props}>
+  <MenuPrimitive as={MenuPanel} {...props}>
     {props.children}
   </MenuPrimitive>
 );
 
 const _MenuItem = (props) => (
-  <MenuPrimitive.Item use={MenuItem} {...props}>
-    <MenuPrimitive.Icon use={CheckIcon} {...props} style={{ marginRight: '5px' }} />
+  <MenuPrimitive.Item as={MenuItem} {...props}>
+    <MenuPrimitive.Icon as={CheckIcon} {...props} style={{ marginRight: '5px' }} />
     {props.children}
   </MenuPrimitive.Item>
 );

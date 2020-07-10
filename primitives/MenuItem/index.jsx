@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MenuItem = ({ use: Component = 'button', ...props }) => (
+export const MenuItem = ({ as: Component = 'button', ...props }) => (
   <Component data-component-menu-item {...props} />
 );
 

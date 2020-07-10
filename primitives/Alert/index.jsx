@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const Alert = ({ use: Component = 'div', ...props }) => (
+export const Alert = ({ as: Component = 'div', ...props }) => (
   <Component {...props} data-component-alert />
 );
 
-const AlertCloseButton = ({ use: Component = 'button', ...props }) => (
+const AlertCloseButton = ({ as: Component = 'button', ...props }) => (
   <Component
     {...props}
     onClick={() => alert('primitive functionality')}

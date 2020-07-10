@@ -9,15 +9,15 @@ import { MenuItem as MenuItemPart } from './MenuItem';
 
 export const Combobox = (props) => (
   <ComboboxPrimitive {...props} style={{ position: 'relative' }}>
-    <ComboboxPrimitive.Input use={Input} placeholder="Combobox" size="1" />
+    <ComboboxPrimitive.Input as={Input} placeholder="Combobox" size="1" />
     <ComboboxPrimitive.Panel
-      use={MenuPanel}
+      as={MenuPanel}
       styled={css({ position: 'absolute', top: '100%', mt: 2, width: '100%' })}
     >
-      <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 1</ComboboxPrimitive.MenuItem>
-      <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 2</ComboboxPrimitive.MenuItem>
-      <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 3</ComboboxPrimitive.MenuItem>
-      <ComboboxPrimitive.MenuItem use={MenuItemPart}>Suggestion 4</ComboboxPrimitive.MenuItem>
+      <ComboboxPrimitive.MenuItem as={MenuItemPart}>Suggestion 1</ComboboxPrimitive.MenuItem>
+      <ComboboxPrimitive.MenuItem as={MenuItemPart}>Suggestion 2</ComboboxPrimitive.MenuItem>
+      <ComboboxPrimitive.MenuItem as={MenuItemPart}>Suggestion 3</ComboboxPrimitive.MenuItem>
+      <ComboboxPrimitive.MenuItem as={MenuItemPart}>Suggestion 4</ComboboxPrimitive.MenuItem>
     </ComboboxPrimitive.Panel>
   </ComboboxPrimitive>
 );
