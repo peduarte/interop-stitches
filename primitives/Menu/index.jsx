@@ -1,22 +1,27 @@
 import React, { useContext } from 'react';
+import { styled } from '../../css';
 
 const Context = React.createContext(false);
 
-export const Menu = ({ use: Component = 'div', ...props }) => (
-  <Component {...props} data-component-menu />
-);
+export const Menu = styled((props) => <styled.Box {...props} data-component-menu />);
 
-const MenuItem = ({ use: Component = 'button', ...props }) => (
-  <Component {...props} onClick={() => alert('primitive functionality')} data-component-menu-item>
+const MenuItem = styled((props) => (
+  <styled.Box
+    {...props}
+    onClick={() => alert('primitive functionality')}
+    as={props.as || 'button'}
+    data-component-menu-item
+  >
     <Context.Provider value={props.selected}>{props.children}</Context.Provider>
-  </Component>
-);
+  </styled.Box>
+));
 
-const MenuIcon = ({ use: Component = 'svg', ...props }) => {
+const MenuIcon = styled((props) => {
   const checked = useContext(Context);
   return (
-    <Component
+    <styled.Box
       {...props}
+      as={props.as || 'svg'}
       data-component-menu-icon
       style={{
         visibility: checked ? 'visible' : 'hidden',
@@ -25,12 +30,7 @@ const MenuIcon = ({ use: Component = 'svg', ...props }) => {
       }}
     />
   );
-};
+});
 
 Menu.Item = MenuItem;
 Menu.Icon = MenuIcon;
-
-export const styles = {
-  menu: {},
-  menuItem: {},
-};

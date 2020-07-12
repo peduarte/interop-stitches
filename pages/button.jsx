@@ -19,7 +19,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Button variant={{ small: 'blue', large: 'red' }}>Default button</Button>
+      <Button as="a" variant={{ small: 'blue', large: 'red' }}>
+        Default button
+      </Button>
     </div>
   );
 }

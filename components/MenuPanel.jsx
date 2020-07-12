@@ -1,10 +1,9 @@
 import React from 'react';
-import { MenuPanel as MenuPanelPrimitive, styles } from '../primitives/MenuPanel';
+import { MenuPanel as MenuPanelPrimitive } from '../primitives/MenuPanel';
 import { styled } from '../css';
 import { theme } from '../theme';
 
 export const MenuPanel = styled(MenuPanelPrimitive, {
-  ...styles.menuPanel,
   py: 1,
   backgroundColor: 'white',
   boxShadow:

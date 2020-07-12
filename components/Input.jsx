@@ -1,12 +1,11 @@
 import React from 'react';
-import { Input as InputPrimitive, styles } from '../primitives/Input';
+import { Input as InputPrimitive } from '../primitives/Input';
 import { styled } from '../css';
 import { theme } from '../theme';
 
 export const Input = styled(
   InputPrimitive,
   {
-    ...styles.input,
     fontFamily: 'normal',
     fontVariantNumeric: 'tabular-nums',
     borderRadius: 1,

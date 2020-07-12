@@ -1,10 +1,9 @@
 import React from 'react';
-import { MenuItem as MenuItemPrimitive, styles } from '../primitives/MenuItem';
+import { MenuItem as MenuItemPrimitive } from '../primitives/MenuItem';
 import { styled } from '../css';
 import { theme } from '../theme';
 
 export const MenuItem = styled(MenuItemPrimitive, {
-  ...styles.menuItem,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'start',

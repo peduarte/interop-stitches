@@ -1,9 +1,4 @@
 import React from 'react';
+import { styled } from '../../css';
 
-export const MenuPanel = ({ use: Component = 'div', ...props }) => (
-  <Component data-component-menu-panel {...props} />
-);
-
-export const styles = {
-  menuPanel: {},
-};
+export const MenuPanel = styled((props) => <styled.Box {...props} data-component-menu-panel />);

@@ -1,16 +1,14 @@
 import React from 'react';
+import { styled } from '../../css';
 
-export const MenuItem = ({ use: Component = 'button', ...props }) => (
-  <Component data-component-menu-item {...props} />
-);
-
-export const styles = {
-  menuItem: {
+export const MenuItem = styled(
+  (props) => <styled.Box {...props} as={props.as || 'button'} data-component-menu-item />,
+  {
     appearance: 'none',
     border: 0,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     outline: 0,
-  },
-};
+  }
+);

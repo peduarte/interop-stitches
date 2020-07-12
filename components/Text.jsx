@@ -1,12 +1,10 @@
 import React from 'react';
-import { Text as TextPrimitive, styles } from '../primitives/Text';
+import { Text as TextPrimitive } from '../primitives/Text';
 import { styled } from '../css';
-import { theme } from '../theme';
 
-const StyledText = styled(
-  'div',
+export const Text = styled(
+  TextPrimitive,
   {
-    ...styles.text,
     fontFamily: 'normal',
     fontVariantNumeric: 'tabular-nums',
     margin: 0,
@@ -80,6 +78,4 @@ const StyledText = styled(
   }
 );
 
-StyledText.defaultProps = { size: '4', weight: 'normal' };
-
-export const Text = (props) => <TextPrimitive use={StyledText} {...props} />;
+Text.defaultProps = { size: '4', weight: 'normal' };

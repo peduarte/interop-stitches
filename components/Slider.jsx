@@ -1,10 +1,9 @@
 import React from 'react';
-import { Slider as SliderPrimitive, styles } from '../primitives/Slider';
+import { Slider as SliderPrimitive } from '../primitives/Slider';
 import { styled } from '../css';
 import { theme } from '../theme';
 
 const StyledSlider = styled(SliderPrimitive, {
-  ...styles.slider,
   paddingTop: 3,
   paddingBottom: 3,
   '[data-state-disabled] [data-component-slider-track]': {
@@ -22,20 +21,17 @@ const StyledSlider = styled(SliderPrimitive, {
 });
 
 const Track = styled(SliderPrimitive.Track, {
-  ...styles.track,
   backgroundColor: theme.colors.gray400,
   height: '2px',
   borderRadius: 1,
 });
 
 const Range = styled(SliderPrimitive.Range, {
-  ...styles.range,
   backgroundColor: theme.colors.blue600,
   borderRadius: 'inherit',
 });
 
 const Thumb = styled(SliderPrimitive.Thumb, {
-  ...styles.thumb,
   height: '12px',
   width: '12px',
   borderRadius: '6px',

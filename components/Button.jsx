@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button as ButtonPrimitive, styles } from '../primitives/Button';
+import { Button as ButtonPrimitive } from '../primitives/Button';
 import { styled } from '../css';
 import { theme } from '../theme';
 
 export const Button = styled(
   ButtonPrimitive,
   {
-    ...styles.button,
     width: 'min-content',
     display: 'inline-flex',
     alignItems: 'center',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CrossIcon } from '@modulz/radix-icons';
-import { Alert as AlertPrimitive, styles } from '../primitives/Alert';
+import { Alert as AlertPrimitive } from '../primitives/Alert';
 import { styled, css } from '../css';
 import { theme } from '../theme';
 import { IconButton } from './IconButton';
@@ -8,7 +8,6 @@ import { IconButton } from './IconButton';
 const StyledAlert = styled(
   'div',
   {
-    ...styles.alert,
     position: 'relative',
     borderRadius: 2,
     borderWidth: '1px',
@@ -49,9 +48,9 @@ StyledAlert.defaultProps = {
 };
 
 export const Alert = (props) => (
-  <AlertPrimitive use={StyledAlert} {...props}>
+  <AlertPrimitive as={StyledAlert} {...props}>
     <AlertPrimitive.CloseButton
-      use={IconButton}
+      as={IconButton}
       styled={css({ position: 'absolute', right: '10px', top: '10px' })}
     >
       <CrossIcon />

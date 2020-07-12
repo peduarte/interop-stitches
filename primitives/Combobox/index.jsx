@@ -1,49 +1,45 @@
 import React, { useContext } from 'react';
+import { styled } from '../../css';
 
 const Context = React.createContext('');
 
-export const Combobox = ({ use: Component = 'div', ...props }) => {
+export const Combobox = styled((props) => {
   const value = useContext(Context);
   const context = React.useState('');
   return (
     <Context.Provider value={context}>
-      <Component {...props} data-component-combobox />
+      <styled.Box {...props} data-component-combobox />
     </Context.Provider>
   );
-};
+});
 
-const ComboboxPanel = ({ use: Component = 'div', ...props }) => {
+const ComboboxPanel = styled((props) => {
   const [value] = useContext(Context);
 
   return value ? (
-    <Component {...props} data-component-combobox-panel>
+    <styled.Box {...props} data-component-combobox-panel>
       {props.children}
-    </Component>
+    </styled.Box>
   ) : null;
-};
+});
 
-const ComboboxInput = ({ use: Component = 'input', ...props }) => {
+const ComboboxInput = styled((props) => {
   const [value, setValue] = useContext(Context);
   return (
-    <Component
+    <styled.Box
       {...props}
+      as={props.as || 'input'}
       data-component-combobox-input
       value={value}
       onChange={(e) => setValue(e.target.value)}
     />
   );
-};
+});
 
-const ComboboxMenuItem = ({ use: Component = 'div', ...props }) => {
-  return <Component {...props} data-component-combobox-menu-item />;
-};
+const ComboboxMenuItem = styled((props) => {
+  return <styled.Box {...props} data-component-combobox-menu-item />;
+});
 
 Combobox.Panel = ComboboxPanel;
 Combobox.Input = ComboboxInput;
 Combobox.MenuItem = ComboboxMenuItem;
-
-export const styles = {
-  combobox: {},
-  panel: {},
-  input: {},
-};
