@@ -9,17 +9,17 @@ import {
   ITokensDefinition,
   TCss,
   TDeclarativeCss,
-} from './types';
+} from "./types";
 import {
   createSheets,
   cssPropToToken,
   getVendorPrefixAndProps,
   hashString,
   specificityProps,
-} from './utils';
+} from "./utils";
 
-export * from './types';
-export * from './css-types';
+export * from "./types";
+export * from "./css-types";
 
 export const hotReloadingCache = new Map<string, any>();
 
@@ -28,7 +28,7 @@ const toStringCachedAtom = function (this: IAtom) {
 };
 
 const toStringCompose = function (this: IComposedAtom) {
-  const className = this.atoms.map((atom) => atom.toString()).join(' ');
+  const className = this.atoms.map((atom) => atom.toString()).join(" ");
 
   // cache the className on this instance
   // @ts-ignore
@@ -46,19 +46,25 @@ const createToString = (
 ) => {
   let seq = 0;
   return function toString(this: IAtom) {
-    const className = cssClassnameProvider(this, preInjectedRules.size ? null : seq++);
-    const shouldInject = !preInjectedRules.size || !preInjectedRules.has(`.${className[0]}`);
+    const className = cssClassnameProvider(
+      this,
+      preInjectedRules.size ? null : seq++
+    );
+    const shouldInject =
+      !preInjectedRules.size || !preInjectedRules.has(`.${className[0]}`);
     const value = this.value;
 
     if (shouldInject) {
-      let cssRule = '';
+      let cssRule = "";
       if (className.length === 2) {
         cssRule = `.${className[0]}${className[1]}{${this.cssHyphenProp}:${value};}`;
       } else {
         cssRule = `.${className[0]}{${this.cssHyphenProp}:${value};}`;
       }
 
-      sheets[this.screen].insertRule(this.screen ? screens[this.screen](cssRule) : cssRule);
+      sheets[this.screen].insertRule(
+        this.screen ? screens[this.screen](cssRule) : cssRule
+      );
     }
 
     // We are switching this atom from IAtom simpler representation
@@ -86,14 +92,16 @@ const createServerToString = (
     const className = cssClassnameProvider(this, null);
     const value = this.value;
 
-    let cssRule = '';
+    let cssRule = "";
     if (className.length === 2) {
       cssRule = `.${className[0]}${className[1]}{${this.cssHyphenProp}:${value};}`;
     } else {
       cssRule = `.${className[0]}{${this.cssHyphenProp}:${value};}`;
     }
 
-    sheets[this.screen].insertRule(this.screen ? screens[this.screen](cssRule) : cssRule);
+    sheets[this.screen].insertRule(
+      this.screen ? screens[this.screen](cssRule) : cssRule
+    );
 
     // We do not clean out the atom here, cause it will be reused
     // to inject multiple times for each request
@@ -110,17 +118,25 @@ const createServerToString = (
 
 const createThemeToString = (classPrefix: string, variablesSheet: ISheet) =>
   function toString(this: IThemeAtom) {
-    const themeClassName = `${classPrefix ? `${classPrefix}-` : ''}theme-${this.name}`;
+    const themeClassName = `${classPrefix ? `${classPrefix}-` : ""}theme-${
+      this.name
+    }`;
 
     // @ts-ignore
     variablesSheet.insertRule(
-      `.${themeClassName}{${Object.keys(this.definition).reduce((aggr, tokenType) => {
-        // @ts-ignore
-        return `${aggr}${Object.keys(this.definition[tokenType]).reduce((subAggr, tokenKey) => {
+      `.${themeClassName}{${Object.keys(this.definition).reduce(
+        (aggr, tokenType) => {
           // @ts-ignore
-          return `${subAggr}--${tokenType}-${tokenKey}:${this.definition[tokenType][tokenKey]};`;
-        }, aggr)}`;
-      }, '')}}`
+          return `${aggr}${Object.keys(this.definition[tokenType]).reduce(
+            (subAggr, tokenKey) => {
+              // @ts-ignore
+              return `${subAggr}--${tokenType}-${tokenKey}:${this.definition[tokenType][tokenKey]};`;
+            },
+            aggr
+          )}`;
+        },
+        ""
+      )}}`
     );
 
     this.toString = () => themeClassName;
@@ -128,18 +144,19 @@ const createThemeToString = (classPrefix: string, variablesSheet: ISheet) =>
     return themeClassName;
   };
 
-const composeIntoMap = (map: Map<string, IAtom>, atoms: (IAtom | IComposedAtom)[]) => {
+const composeIntoMap = (
+  map: Map<string, IAtom>,
+  atoms: (IAtom | IComposedAtom)[]
+) => {
   let i = atoms.length - 1;
   for (; i >= 0; i--) {
     const item = atoms[i];
     // atoms can be undefined, null, false or '' using ternary like
     // expressions with the properties
-    if (item && 'atoms' in item) {
+    if (item && "atoms" in item) {
       composeIntoMap(map, item.atoms);
     } else if (item) {
-      //@ts-ignore
       if (!map.has(item.id)) {
-        //@ts-ignore
         map.set(item.id, item);
       }
     }
@@ -150,18 +167,23 @@ export const createTokens = <T extends ITokensDefinition>(tokens: T) => {
   return tokens;
 };
 
-const createDeclarativeCss = <T extends IConfig>(config: T): TDeclarativeCss<T> => {
+const createDeclarativeCss = <T extends IConfig>(
+  config: T
+): TDeclarativeCss<T> => {
   return function (this: any, definition: any) {
     const composer = this;
     const args: any[] = [];
     for (const key in definition) {
-      if (config.utilityFirst && key === 'override') {
+      if (config.utilityFirst && key === "override") {
         for (const overrideKey in definition[key]) {
           if (!overrideKey[0].match(/[a-z]/)) {
             // tslint:disable-next-line
             for (const selectorKey in definition[key][overrideKey]) {
               args.push(
-                composer[key][selectorKey](definition[key][overrideKey][selectorKey], overrideKey)
+                composer[key][selectorKey](
+                  definition[key][overrideKey][selectorKey],
+                  overrideKey
+                )
               );
             }
           } else {
@@ -174,7 +196,10 @@ const createDeclarativeCss = <T extends IConfig>(config: T): TDeclarativeCss<T> 
             // tslint:disable-next-line
             for (const selectorKey in definition[key][screenKey]) {
               args.push(
-                composer[key][selectorKey](definition[key][screenKey][selectorKey], screenKey)
+                composer[key][selectorKey](
+                  definition[key][screenKey][selectorKey],
+                  screenKey
+                )
               );
             }
           } else {
@@ -197,16 +222,16 @@ const createDeclarativeCss = <T extends IConfig>(config: T): TDeclarativeCss<T> 
 
 export const createCss = <T extends IConfig>(
   config: T,
-  env: Window | null = typeof window === 'undefined' ? null : window
+  env: Window | null = typeof window === "undefined" ? null : window
 ): TCss<T> => {
   const showFriendlyClassnames =
-    typeof config.showFriendlyClassnames === 'boolean'
+    typeof config.showFriendlyClassnames === "boolean"
       ? config.showFriendlyClassnames
-      : process.env.NODE_ENV === 'development';
-  const prefix = config.prefix || '';
+      : process.env.NODE_ENV === "development";
+  const prefix = config.prefix || "";
   const { vendorPrefix, vendorProps } = env
     ? getVendorPrefixAndProps(env)
-    : { vendorPrefix: '-node-', vendorProps: [] };
+    : { vendorPrefix: "-node-", vendorProps: [] };
 
   if (env && hotReloadingCache.has(prefix)) {
     const instance = hotReloadingCache.get(prefix);
@@ -214,22 +239,30 @@ export const createCss = <T extends IConfig>(
   }
 
   // pre-compute class prefix
-  const classPrefix = prefix ? (showFriendlyClassnames ? `${prefix}_` : prefix) : '';
-  const cssClassnameProvider = (atom: IAtom, seq: number | null): [string, string?] => {
+  const classPrefix = prefix
+    ? showFriendlyClassnames
+      ? `${prefix}_`
+      : prefix
+    : "";
+  const cssClassnameProvider = (
+    atom: IAtom,
+    seq: number | null
+  ): [string, string?] => {
     const hash =
       seq === null
         ? hashString(
-            `${atom.screen || ''}${atom.cssHyphenProp.replace(/-(moz|webkit|ms)-/, '')}${
-              atom.pseudo || ''
-            }${atom.value}`
+            `${atom.screen || ""}${atom.cssHyphenProp.replace(
+              /-(moz|webkit|ms)-/,
+              ""
+            )}${atom.pseudo || ""}${atom.value}`
           )
         : seq;
     const name = showFriendlyClassnames
-      ? `${atom.screen ? `${atom.screen}_` : ''}${atom.cssHyphenProp
-          .replace(/-(moz|webkit|ms)-/, '')
-          .split('-')
+      ? `${atom.screen ? `${atom.screen}_` : ""}${atom.cssHyphenProp
+          .replace(/-(moz|webkit|ms)-/, "")
+          .split("-")
           .map((part) => part[0])
-          .join('')}_${hash}`
+          .join("")}_${hash}`
       : `_${hash}`;
     const className = `${classPrefix}${name}`;
 
@@ -250,7 +283,12 @@ export const createCss = <T extends IConfig>(
   }
 
   let toString = env
-    ? createToString(sheets, config.screens, cssClassnameProvider, preInjectedRules)
+    ? createToString(
+        sheets,
+        config.screens,
+        cssClassnameProvider,
+        preInjectedRules
+      )
     : createServerToString(sheets, config.screens, cssClassnameProvider);
 
   let themeToString = createThemeToString(classPrefix, sheets.__variables__);
@@ -268,7 +306,7 @@ export const createCss = <T extends IConfig>(
   const utils = config.utils || {};
   const tokens = config.tokens || {};
 
-  let baseTokens = ':root{';
+  let baseTokens = ":root{";
   // tslint:disable-next-line
   for (const tokenType in tokens) {
     // @ts-ignore
@@ -283,9 +321,9 @@ export const createCss = <T extends IConfig>(
       tokens[tokenType][token] = `var(${cssvar})`;
     }
   }
-  baseTokens += '}';
+  baseTokens += "}";
 
-  if (!preInjectedRules.has(':root')) {
+  if (!preInjectedRules.has(":root")) {
     sheets.__variables__.insertRule(baseTokens);
   }
 
@@ -294,8 +332,8 @@ export const createCss = <T extends IConfig>(
   const themeCache = new Map<ITokensDefinition, IThemeAtom>();
 
   // proxy state values that change based on propertie access
-  let cssProp = '';
-  let screen = '';
+  let cssProp = "";
+  let screen = "";
   // We need to know when we call utils to avoid clearing
   // the screen set for that util, also avoid util calling util
   // when overriding properties
@@ -306,7 +344,7 @@ export const createCss = <T extends IConfig>(
   const declarativeCss = createDeclarativeCss(config);
   const cssInstance = new Proxy(declarativeCss, {
     get(_, prop, proxy) {
-      if (prop === 'dispose') {
+      if (prop === "dispose") {
         return () => {
           atomCache.clear();
           tags.forEach((tag) => {
@@ -314,7 +352,10 @@ export const createCss = <T extends IConfig>(
           });
         };
       }
-      if (prop === 'theme') {
+      if (prop === "_config") {
+        return config;
+      }
+      if (prop === "theme") {
         return (definition: any): IThemeAtom => {
           if (themeCache.has(definition)) {
             return themeCache.get(definition)!;
@@ -333,15 +374,15 @@ export const createCss = <T extends IConfig>(
           return themeAtom;
         };
       }
-      if (prop === 'compose') {
+      if (prop === "compose") {
         return compose;
       }
       // SSR
-      if (prop === 'getStyles') {
+      if (prop === "getStyles") {
         return (cb: any) => {
           // tslint:disable-next-line
           for (let sheet in sheets) {
-            sheets[sheet].content = '';
+            sheets[sheet].content = "";
           }
           if (baseTokens) {
             sheets.__variables__.insertRule(baseTokens);
@@ -349,11 +390,18 @@ export const createCss = <T extends IConfig>(
 
           // We have to reset our toStrings so that they will now inject again,
           // and still cache is it is being reused
-          toString = createServerToString(sheets, config.screens, cssClassnameProvider);
+          toString = createServerToString(
+            sheets,
+            config.screens,
+            cssClassnameProvider
+          );
 
           // We have to reset our themeToStrings so that they will now inject again,
           // and still cache is it is being reused
-          themeToString = createThemeToString(classPrefix, sheets.__variables__);
+          themeToString = createThemeToString(
+            classPrefix,
+            sheets.__variables__
+          );
 
           atomCache.forEach((atom) => {
             atom.toString = toString;
@@ -369,23 +417,32 @@ export const createCss = <T extends IConfig>(
             result,
             styles: Object.keys(screens).reduce(
               (aggr, key) => {
-                return aggr.concat(`/* STITCHES:${key} */\n${sheets[key].content}`);
+                return aggr.concat(
+                  `/* STITCHES:${key} */\n${sheets[key].content}`
+                );
               },
               [
                 `/* STITCHES:__variables__ */\n${sheets.__variables__.content}`,
-                `/* STITCHES */\n${sheets[''].content}`,
+                `/* STITCHES */\n${sheets[""].content}`,
               ]
             ),
           };
         };
       }
 
-      if (prop === 'override' && config.utilityFirst) {
+      if (prop === "override" && config.utilityFirst) {
         isOverriding = true;
         return proxy;
       }
 
       if (prop in screens) {
+        if (screen) {
+          throw new Error(
+            `@stitches/css - You can not add the screen "${String(
+              prop
+            )}" inside the screen ${screen}`
+          );
+        }
         screen = String(prop);
       } else if (!isCallingUtil && prop in utils) {
         const util = utils[String(prop)](proxy, config);
@@ -393,11 +450,13 @@ export const createCss = <T extends IConfig>(
           isCallingUtil = true;
           const result = util(...args);
           isCallingUtil = false;
-          screen = '';
+          screen = "";
           return result;
         };
       } else if (config.utilityFirst && !isCallingUtil && !isOverriding) {
-        throw new Error(`@stitches/css - The property "${String(prop)}" is not available`);
+        throw new Error(
+          `@stitches/css - The property "${String(prop)}" is not available`
+        );
       } else if (specificityProps[String(prop)]) {
         return specificityProps[String(prop)](cssInstance);
       } else {
@@ -418,7 +477,9 @@ export const createCss = <T extends IConfig>(
       // generate id used for specificity check
       // two atoms are considered equal in regared to there specificity if the id is equal
       const id =
-        cssProp.toLowerCase() + (pseudo ? pseudo.split(':').sort().join(':') : '') + screen;
+        cssProp.toLowerCase() +
+        (pseudo ? pseudo.split(":").sort().join(":") : "") +
+        screen;
 
       // make a uid accouting for different values
       const uid = id + value;
@@ -427,9 +488,9 @@ export const createCss = <T extends IConfig>(
       if (atomCache.has(uid)) {
         // Reset the screen name if needed
         if (!isCallingUtil) {
-          screen = '';
+          screen = "";
         }
-        cssProp = '';
+        cssProp = "";
         return atomCache.get(uid)!;
       }
 
@@ -437,7 +498,7 @@ export const createCss = <T extends IConfig>(
       let cssHyphenProp = cssProp
         .split(/(?=[A-Z])/)
         .map((g) => g.toLowerCase())
-        .join('-');
+        .join("-");
 
       if (isVendorPrefixed) {
         cssHyphenProp = `-${cssHyphenProp}`;
@@ -460,11 +521,11 @@ export const createCss = <T extends IConfig>(
 
       // Reset the screen name
       if (!isCallingUtil) {
-        screen = '';
+        screen = "";
       }
 
       isOverriding = false;
-      cssProp = '';
+      cssProp = "";
 
       return atom;
     },

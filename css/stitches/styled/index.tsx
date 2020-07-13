@@ -1,124 +1,247 @@
-import { IConfig, TCss, TDeclarativeCss, TDefaultDeclarativeCss } from '@stitches/css';
+import {
+  IConfig,
+  IScreens,
+  TCss,
+  TDeclarativeCss,
+  TDefaultDeclarativeCss,
+  createCss,
+} from '@stitches/css';
 import * as React from 'react';
-import merge from 'lodash.merge';
-import { Box, PolymorphicComponent } from 'react-polymorphic-box';
+
+type PropsOf<
+  E extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
+> = JSX.LibraryManagedAttributes<E, React.ComponentPropsWithRef<E>>;
+
+interface BoxOwnProps<E extends React.ElementType = React.ElementType> {
+  as?: E;
+}
+
+type BoxProps<E extends React.ElementType> = BoxOwnProps<E> & Omit<PropsOf<E>, 'as'>;
+
+type PolymorphicComponentProps<E extends React.ElementType, P> = E extends PolymorphicComponent<
+  infer PP,
+  infer PE
+>
+  ? P & PP & BoxOwnProps<E> & Omit<PropsOf<PE>, 'as'>
+  : P & BoxProps<E>;
+
+export type PolymorphicComponent<P, D extends React.ElementType = 'div'> = (<
+  E extends React.ElementType = D
+>(
+  props: PolymorphicComponentProps<E, P>
+) => JSX.Element) & {
+  propTypes?: React.WeakValidationMap<P>;
+  contextTypes?: React.ValidationMap<any>;
+  defaultProps?: Partial<P>;
+  displayName?: string;
+};
+
 export type CSS<C> = TCss<C> & TDeclarativeCss<C>;
+
 export type CssCallback<C> = (css: CSS<C>) => string;
 export type CssObject<C> = TDefaultDeclarativeCss<C> extends (styled: infer S) => string
   ? S
   : never;
-export type IBaseStyled<C extends IConfig> = (css: CssObject<C>) => string;
+
+type Variants<C> = {
+  [propKey: string]: {
+    [variantName: string]: CssCallback<C> | CssObject<C>;
+  };
+} | void;
+
+type StitchesComponent<
+  E extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  C extends IConfig,
+  V extends Variants<C>
+> = PolymorphicComponent<
+  | (E extends React.ComponentType<infer CP> ? CP : {})
+  | (V extends void
+      ? {
+          styled?: string;
+        }
+      : {
+          [P in keyof V]?: C['screens'] extends IScreens
+            ?
+                | keyof V[P]
+                | {
+                    [S in keyof C['screens']]?: keyof V[P];
+                  }
+            : keyof V[P];
+        } & {
+          styled?: string;
+        }),
+  E
+>;
+
+export type IBaseStyled<C extends IConfig> = <
+  E extends keyof JSX.IntrinsicElements | React.ComponentType<any>,
+  V extends Variants<C> = void
+>(
+  element: E,
+  css?: CssObject<C> | CssCallback<C> | StitchesComponent<E, C, V>,
+  variants?: V
+) => StitchesComponent<E, C, V>;
+
 export type IStyled<C extends IConfig> = {
-  [E in keyof JSX.IntrinsicElements]: <
-    V extends {
-      [propKey: string]: {
-        [variantName: string]: CssCallback<C> | CssObject<C>;
-      };
-    }
-  >(
+  [E in keyof JSX.IntrinsicElements]: <V extends Variants<C> = void>(
     cb: CssCallback<C> | CssObject<C>,
     variants?: V
-  ) => PolymorphicComponent<
-    | { [P in keyof V]?: keyof V[P] }
-    | ({
-        styled?: string;
-      } & {}),
-    E
-  >;
+  ) => StitchesComponent<E, C, V>;
 };
+
+let hasWarnedInlineStyle = false;
+
 export const createStyled = <T extends IConfig>(css: TCss<T>) => {
   if (!css) {
     throw new Error('@stitches/styled - you need to pass in your css here');
   }
-  const polymorphicCss = (cssFunctionOrObject: any) => {
+
+  const defaultElement = 'div';
+  const Box = React.forwardRef((props: any, ref: React.Ref<Element>) => {
+    const Element = props.as || defaultElement;
+
+    console.dir('foo ');
+
+    const className = ''; //css.compose(...Element.__compositions__);
+
+    return React.createElement(Element, {
+      ref,
+      ...props,
+      className: props.className ? `${props.className} ${className}` : className,
+      as: undefined,
+      __compositions__: undefined,
+    });
+  }) as <E extends React.ElementType = typeof defaultElement>(props: BoxProps<E>) => JSX.Element;
+
+  const polymorphicCss = (cssFunctionOrObject: any, screen?: string) => {
+    if (screen) {
+      return typeof cssFunctionOrObject === 'function'
+        ? cssFunctionOrObject((css as any)[screen])
+        : css({ [screen]: cssFunctionOrObject });
+    }
     return typeof cssFunctionOrObject === 'function'
       ? cssFunctionOrObject(css)
       : (css as any)(cssFunctionOrObject);
   };
-  // let currentAs: string;
+
+  let currentAs: string | undefined;
+
+  const configScreens = (css as any)._config.screens;
+
   const styledInstance = (
-    currentAs,
-    baseStyling: any,
-    variants: { [variant: string]: { [name: string]: any } } = {}
+    baseStyling: any = (cssComposer: any) => cssComposer.compose(),
+    variants: { [variant: string]: { [name: string]: any } } = {},
+    Component: React.ComponentType<any> = Box
   ) => {
-    const as = currentAs.stitchesStyles?.as || currentAs;
-    const extendedBase = merge({}, currentAs.stitchesStyles?.base, baseStyling);
-    const extendedVariants = merge({}, currentAs.stitchesStyles?.variants, variants);
-    const baseStyles: any = polymorphicCss(extendedBase);
-    const evaluatedVariantMap: Map<string, Map<string, string>> = new Map();
+    const as = currentAs;
+    const compositions = as?.__compositions__ || {};
+
+    const extendedBaseStyles = { ...compositions.baseStyling, ...baseStyling };
+    const extendedVariants = { ...compositions?.variants, ...variants };
+
+    const baseStyles: any = polymorphicCss(extendedBaseStyles);
+    const evaluatedVariantMap: Map<string, Map<string, { [key: string]: string }>> = new Map();
     // tslint:disable-next-line
     for (const variantName in extendedVariants) {
-      const variantMap: Map<string, string> = new Map();
+      const variantMap: Map<string, { [key: string]: string }> = new Map();
       // tslint:disable-next-line
       for (const variant in extendedVariants[variantName]) {
-        variantMap.set(variant, polymorphicCss(extendedVariants[variantName][variant]));
+        const screens: { [key: string]: string } = {
+          '': polymorphicCss(extendedVariants[variantName][variant]),
+        };
+        if (configScreens) {
+          // tslint:disable-next-line
+          for (const screen in configScreens) {
+            screens[screen] = polymorphicCss(extendedVariants[variantName][variant], screen);
+          }
+        }
+        variantMap.set(variant, screens);
       }
       evaluatedVariantMap.set(variantName, variantMap);
     }
-    const Component = (props: any) => {
-      const memoComposition = React.useMemo(() => {
-        const base = [baseStyles];
-        if (props.styled) {
-          base.push(polymorphicCss(props.styled));
-        }
-        return {
-          identity: props.styled,
-          base,
-        }; // eslint-disable-next-line
-      }, []); // We want this to only eval once
+
+    const StitchesComponent = (props: any) => {
+      const memoStyled = React.useMemo(() => props.styled, []); // We want this to only eval once
+
       // Check the memoCompsition's identity to warn the user
       // remove in production
-      // if (process.env.NODE_ENV === "development") {
-      //   if (memoComposition.identity !== props.styled) {
-      //     throw new Error(
-      //       "@stitches/styled : The styled prop should not be dynamic. Define it outside your component"
-      //     );
-      //   }
-      // }
-      // Make a copy of the baseComposition
-      // e.g. combination of baseStyles + props.styled if present
-      const compositions = memoComposition.base.slice();
-      const responsive = [];
+      if (process.env.NODE_ENV === 'development') {
+        if (memoStyled !== props.styled && !hasWarnedInlineStyle) {
+          // tslint:disable-next-line
+          console.warn(
+            '@stitches/styled : The styled prop should ideally not be dynamic. Define it outside your component using the css composer'
+          );
+          hasWarnedInlineStyle = true;
+        }
+      }
+
+      const compositions = [baseStyles];
       const propsWithoutVariants: any = {};
 
       for (const propName in props) {
-        if (!(propName in extendedVariants)) continue;
-        if (typeof props[propName] === 'object') {
-          for (let screen in props[propName]) {
-            const variant = props[propName][screen];
-            responsive.push(polymorphicCss({ [screen]: extendedVariants[propName][variant] }));
-          }
-        }
-        if (props[propName] in extendedVariants[propName]) {
-          const name = evaluatedVariantMap.get(propName)?.get(props[propName]);
-          if (name) {
-            compositions.push(name);
+        if (propName in extendedVariants) {
+          const screens = evaluatedVariantMap.get(propName);
+
+          if (typeof props[propName] === 'string') {
+            compositions.push(screens?.get(props[propName])!['']);
           } else {
-            propsWithoutVariants[propName] = props[propName];
+            // tslint:disable-next-line
+            for (const screen in props[propName]) {
+              compositions.push(screens?.get(props[propName][screen])![screen]);
+            }
           }
+        } else {
+          propsWithoutVariants[propName] = props[propName];
         }
       }
-      const className = css.compose(...compositions, ...responsive);
-      return React.createElement(Box, {
-        as,
-        ...props,
+
+      if (props.styled) {
+        compositions.push(props.styled);
+      }
+
+      const className = css.compose(...compositions);
+
+      return React.createElement(Component, {
         ...propsWithoutVariants,
+        as: props.as || as,
         className: props.className ? `${props.className} ${className}` : className,
       });
     };
-    Component.stitchesStyles = {
-      as,
-      base: extendedBase,
+
+    StitchesComponent.__compositions__ = {
+      baseStyling: extendedBaseStyles,
       variants: extendedVariants,
     };
-    return Component;
+
+    return StitchesComponent;
   };
+
   // tslint:disable-next-line
-  // const styledProxy = (new Proxy(() => {}, {
-  //   get(_, prop) {
-  //     currentAs = String(prop);
-  //     return styledInstance;
-  //   },
-  // }) as unknown) as IBaseStyled<T> & IStyled<T>;
-  return styledInstance;
+  const styledProxy = (new Proxy(() => {}, {
+    get(_, prop) {
+      if (prop === 'Box') {
+        return Box;
+      }
+      currentAs = String(prop);
+      return styledInstance;
+    },
+    apply(_, __, [Element, styling, variants]) {
+      if (typeof Element === 'string') {
+        currentAs = Element;
+        return styledInstance(styling, variants);
+      }
+      if (styling.__compositions__) {
+        currentAs = Element;
+        currentAs.__compositions__ = styling.__compositions__;
+        return styledInstance({}, variants);
+      }
+      currentAs = undefined;
+      return styledInstance(styling, variants, Element);
+    },
+  }) as unknown) as IBaseStyled<T> &
+    IStyled<T> & {
+      Box: typeof Box;
+    };
+
+  return styledProxy;
 };

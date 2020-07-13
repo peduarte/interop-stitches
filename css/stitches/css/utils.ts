@@ -1,83 +1,80 @@
-import { StandardProperties } from './css-types';
-import { IConfig, ICssPropToToken, IScreens, ISheet, TCss } from './types';
+import { ICssPropToToken, IScreens, ISheet, TCss } from "./types";
 
 export const cssPropToToken: ICssPropToToken = {
-  color: 'colors',
-  backgroundColor: 'colors',
-  margin: 'space',
-  marginTop: 'space',
-  marginLeft: 'space',
-  marginRight: 'space',
-  marginBottom: 'space',
-  padding: 'space',
-  paddingTop: 'space',
-  paddingLeft: 'space',
-  paddingRight: 'space',
-  paddingBottom: 'space',
-  gridGap: 'space',
-  gridColumnGap: 'space',
-  gridRowGap: 'space',
-  fontSize: 'fontSizes',
-  borderColor: 'colors',
-  borderTopColor: 'colors',
-  borderLeftColor: 'colors',
-  borderRightColor: 'colors',
-  borderBottomColor: 'colors',
-  fontFamily: 'fonts',
-  fontWeight: 'fontWeights',
-  lineHeight: 'lineHeights',
-  letterSpacing: 'letterSpacings',
-  width: 'sizes',
-  height: 'sizes',
-  minWidth: 'sizes',
-  maxWidth: 'sizes',
-  minHeight: 'sizes',
-  maxHeight: 'sizes',
-  borderWidth: 'borderWidths',
-  borderTopWidth: 'borderWidths',
-  borderLeftWidth: 'borderWidths',
-  borderRightWidth: 'borderWidths',
-  borderBottomWidth: 'borderWidths',
-  borderStyle: 'borderStyles',
-  borderTopStyle: 'borderStyles',
-  borderLeftStyle: 'borderStyles',
-  borderRightStyle: 'borderStyles',
-  borderBottomStyle: 'borderStyles',
-  borderRadius: 'radii',
-  borderTopLeftRadius: 'radii',
-  borderTopRightRadius: 'radii',
-  borderBottomRightRadius: 'radii',
-  borderBottomLeftRadius: 'radii',
-  boxShadow: 'shadows',
-  textShadow: 'shadows',
-  zIndex: 'zIndices',
-  transition: 'transitions',
+  color: "colors",
+  backgroundColor: "colors",
+  margin: "space",
+  marginTop: "space",
+  marginLeft: "space",
+  marginRight: "space",
+  marginBottom: "space",
+  padding: "space",
+  paddingTop: "space",
+  paddingLeft: "space",
+  paddingRight: "space",
+  paddingBottom: "space",
+  gridGap: "space",
+  gridColumnGap: "space",
+  gridRowGap: "space",
+  fontSize: "fontSizes",
+  borderColor: "colors",
+  borderTopColor: "colors",
+  borderLeftColor: "colors",
+  borderRightColor: "colors",
+  borderBottomColor: "colors",
+  fontFamily: "fonts",
+  fontWeight: "fontWeights",
+  lineHeight: "lineHeights",
+  letterSpacing: "letterSpacings",
+  width: "sizes",
+  height: "sizes",
+  minWidth: "sizes",
+  maxWidth: "sizes",
+  minHeight: "sizes",
+  maxHeight: "sizes",
+  borderWidth: "borderWidths",
+  borderTopWidth: "borderWidths",
+  borderLeftWidth: "borderWidths",
+  borderRightWidth: "borderWidths",
+  borderBottomWidth: "borderWidths",
+  borderStyle: "borderStyles",
+  borderTopStyle: "borderStyles",
+  borderLeftStyle: "borderStyles",
+  borderRightStyle: "borderStyles",
+  borderBottomStyle: "borderStyles",
+  borderRadius: "radii",
+  borderTopLeftRadius: "radii",
+  borderTopRightRadius: "radii",
+  borderBottomRightRadius: "radii",
+  borderBottomLeftRadius: "radii",
+  boxShadow: "shadows",
+  textShadow: "shadows",
+  zIndex: "zIndices",
+  transition: "transitions",
 };
 
 export const createSheets = (env: any, screens: IScreens = {}) => {
   const tags: HTMLStyleElement[] = [];
   if (env && env.document) {
-    const head = env.document.querySelector('head');
+    const head = env.document.querySelector("head");
 
     if (!head) {
-      throw new Error('There is no HEAD element on this document');
+      throw new Error("There is no HEAD element on this document");
     }
 
-    const styles = Array.from<HTMLStyleElement>(head.querySelectorAll('style'));
+    const styles = Array.from<HTMLStyleElement>(head.querySelectorAll("style"));
     const existingStyles = styles.filter((style) =>
-      Boolean(style.textContent && style.textContent.startsWith('/* STITCHES'))
+      Boolean(style.textContent && style.textContent.startsWith("/* STITCHES"))
     );
-
-    let styleIndex = existingStyles.length ? styles.indexOf(existingStyles[0]) : styles.length;
 
     return {
       tags,
-      sheets: ['__variables__', '']
+      sheets: ["__variables__", ""]
         .concat(Object.keys(screens))
         .reduce<{ [key: string]: ISheet }>((aggr, key, index) => {
           let style = existingStyles[index];
           if (!style) {
-            style = env.document.createElement('style');
+            style = env.document.createElement("style");
             tags.push(style);
             head.appendChild(style);
           }
@@ -96,11 +93,11 @@ export const createSheets = (env: any, screens: IScreens = {}) => {
 
   return {
     tags,
-    sheets: ['__variables__', '']
+    sheets: ["__variables__", ""]
       .concat(Object.keys(screens))
       .reduce<{ [key: string]: ISheet }>((aggr, key) => {
         aggr[key] = {
-          content: '',
+          content: "",
           cssRules: [],
           insertRule(content) {
             aggr[key].content += `\n${content}`;
@@ -116,7 +113,10 @@ export const specificityProps: {
   [key: string]: (css: TCss<any>) => (value: any, pseudo?: string) => string;
 } = {
   overflow: (css) => (value, pseudo) =>
-    css.compose(css.overflowX(value as any, pseudo), css.overflowY(value as any, pseudo)),
+    css.compose(
+      css.overflowX(value as any, pseudo),
+      css.overflowY(value as any, pseudo)
+    ),
   margin: (css) => (value, pseudo) =>
     css.compose(
       css.marginLeft(value, pseudo),
@@ -163,10 +163,12 @@ export const specificityProps: {
 
 export const getVendorPrefixAndProps = (env: any) => {
   const styles = env.getComputedStyle(env.document.documentElement);
-  const vendorProps = Array.from(styles).filter((prop) => (prop as string)[0] === '-');
+  const vendorProps = Array.from(styles).filter(
+    (prop) => (prop as string)[0] === "-"
+  );
   // @ts-ignore
-  const vendorPrefix = (vendorProps.join('').match(/-(moz|webkit|ms)-/) ||
-    (styles.OLink === '' && ['', 'o']))[1];
+  const vendorPrefix = (vendorProps.join("").match(/-(moz|webkit|ms)-/) ||
+    (styles.OLink === "" && ["", "o"]))[1];
 
   return { vendorPrefix: `-${vendorPrefix}-`, vendorProps };
 };
