@@ -15,25 +15,6 @@ import { Input } from '../components/Input';
 import { Combobox } from '../components/Combobox';
 import { Card } from '../components/Card';
 
-const TextPrimitive = ({ composes: Component = Box, ...props }) => (
-  <Component {...props} data-component-text />
-);
-
-const HeadingPrimitive = ({ composes: Component = Box, ...props }) => (
-  <Component
-    as="h1"
-    {...props}
-    data-component-heading
-    onClick={() => alert('main title mocking primitive functionality')}
-  />
-);
-
-const RedText = styled(TextPrimitive, {
-  color: 'red',
-});
-
-const MainTitle = (props) => <HeadingPrimitive composes={RedText} {...props} />;
-
 export default function Home() {
   React.useEffect(() => {
     var head = document.getElementsByTagName('head')[0];
@@ -49,9 +30,6 @@ export default function Home() {
         <title>Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <HeadingPrimitive>Heading</HeadingPrimitive>
-      <MainTitle as="h5">Red text as heading</MainTitle>
 
       <Box
         styled={css({
