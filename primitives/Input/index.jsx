@@ -1,7 +1,8 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const Input = ({ as: Component = 'input', ...props }) => (
-  <Component data-component-input {...props} />
+export const Input = ({ compose: Component = Box, as = 'input', ...props }) => (
+  <Component data-component-input {...props} as={as} />
 );
 
 export const styles = {

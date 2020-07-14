@@ -100,8 +100,6 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
   const Box = React.forwardRef((props: any, ref: React.Ref<Element>) => {
     const Element = props.as || defaultElement;
 
-    console.dir('foo ');
-
     const className = ''; //css.compose(...Element.__compositions__);
 
     return React.createElement(Element, {
@@ -134,6 +132,7 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
     Component: React.ComponentType<any> = Box
   ) => {
     const as = currentAs;
+    // @ts-ignore
     const compositions = as?.__compositions__ || {};
 
     const extendedBaseStyles = { ...compositions.baseStyling, ...baseStyling };
@@ -232,6 +231,7 @@ export const createStyled = <T extends IConfig>(css: TCss<T>) => {
       }
       if (styling.__compositions__) {
         currentAs = Element;
+        // @ts-ignore
         currentAs.__compositions__ = styling.__compositions__;
         return styledInstance({}, variants);
       }

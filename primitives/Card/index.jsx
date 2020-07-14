@@ -1,7 +1,8 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const Card = ({ as: Component = 'div', ...props }) => (
-  <Component data-component-card {...props} />
+export const Card = ({ compose: Component = Box, as = 'div', ...props }) => (
+  <Component data-component-card {...props} as={as} />
 );
 
 export const styles = {

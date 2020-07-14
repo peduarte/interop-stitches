@@ -1,7 +1,8 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const MenuItem = ({ as: Component = 'button', ...props }) => (
-  <Component data-component-menu-item {...props} />
+export const MenuItem = ({ compose: Component = Box, as = 'button', ...props }) => (
+  <Component data-component-menu-item {...props} as={as} />
 );
 
 export const styles = {

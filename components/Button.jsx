@@ -92,7 +92,7 @@ export const Button = styled(
       },
     },
     size: {
-      0: {
+      '0': {
         fontSize: '1',
         paddingLeft: 2,
         paddingRight: 2,
@@ -100,7 +100,7 @@ export const Button = styled(
         lineHeight: 2,
         letterSpacing: '-0.005em',
       },
-      1: {
+      '1': {
         fontSize: '2',
         paddingLeft: 3,
         paddingRight: 3,

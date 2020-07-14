@@ -1,18 +1,22 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const Alert = ({ as: Component = 'div', ...props }) => (
-  <Component {...props} data-component-alert />
+export const Alert = ({ compose: Component = Box, as = 'div', ...props }) => (
+  <Component {...props} as={as} data-component-alert />
 );
 
-const AlertCloseButton = ({ as: Component = 'button', ...props }) => (
+Alert.CloseButton = ({ compose: Component = Box, as = 'div', ...props }) => (
   <Component
     {...props}
+    as={as}
     onClick={() => alert('primitive functionality')}
     data-component-alert-close-button
   />
 );
 
-Alert.CloseButton = AlertCloseButton;
+Alert.Title = ({ compose: Component = Box, as = 'div', ...props }) => (
+  <Component {...props} as={as} data-component-alert-title />
+);
 
 export const styles = {
   alert: {},

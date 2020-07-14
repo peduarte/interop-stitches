@@ -1,22 +1,29 @@
 import React, { useContext } from 'react';
+import { Box } from 'react-polymorphic-box';
 
 const Context = React.createContext(false);
 
-export const Menu = ({ as: Component = 'div', ...props }) => (
-  <Component {...props} data-component-menu />
+export const Menu = ({ compose: Component = Box, as = 'div', ...props }) => (
+  <Component {...props} as={as} data-component-menu />
 );
 
-const MenuItem = ({ as: Component = 'button', ...props }) => (
-  <Component {...props} onClick={() => alert('primitive functionality')} data-component-menu-item>
+Menu.Item = ({ compose: Component = Box, as = 'button', ...props }) => (
+  <Component
+    {...props}
+    as={as}
+    onClick={() => alert('primitive functionality')}
+    data-component-menu-item
+  >
     <Context.Provider value={props.selected}>{props.children}</Context.Provider>
   </Component>
 );
 
-const MenuIcon = ({ as: Component = 'svg', ...props }) => {
+Menu.Icon = ({ compose: Component = Box, as = 'svg', ...props }) => {
   const checked = useContext(Context);
   return (
     <Component
       {...props}
+      as={as}
       data-component-menu-icon
       style={{
         visibility: checked ? 'visible' : 'hidden',
@@ -26,9 +33,6 @@ const MenuIcon = ({ as: Component = 'svg', ...props }) => {
     />
   );
 };
-
-Menu.Item = MenuItem;
-Menu.Icon = MenuIcon;
 
 export const styles = {
   menu: {},

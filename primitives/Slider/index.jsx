@@ -1,19 +1,20 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const Slider = ({ as: Component = 'span', disabled, ...props }) => {
-  return <Component {...props} data-component-slider data-state-disabled={disabled} />;
+export const Slider = ({ compose: Component = Box, as = 'span', disabled, ...props }) => {
+  return <Component {...props} as={as} data-component-slider data-state-disabled={disabled} />;
 };
 
-const SliderTrack = ({ as: Component = 'span', ...props }) => {
-  return <Component {...props} data-component-slider-track />;
+Slider.Track = ({ compose: Component = Box, as = 'span', ...props }) => {
+  return <Component {...props} as={as} data-component-slider-track />;
 };
 
-const SliderRange = ({ as: Component = 'span', ...props }) => {
-  return <Component {...props} data-component-slider-range />;
+Slider.Range = ({ compose: Component = Box, as = 'span', ...props }) => {
+  return <Component {...props} as={as} data-component-slider-range />;
 };
 
-const SliderThumb = ({ as: Component = 'span', ...props }) => {
-  return <Component {...props} data-component-slider-thumb />;
+Slider.Thumb = ({ compose: Component = Box, as = 'span', ...props }) => {
+  return <Component {...props} as={as} data-component-slider-thumb />;
 };
 
 export const styles = {
@@ -47,7 +48,3 @@ export const styles = {
     transform: 'translate(-50%, -50%)',
   },
 };
-
-Slider.Range = SliderRange;
-Slider.Track = SliderTrack;
-Slider.Thumb = SliderThumb;

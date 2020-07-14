@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { ChatBubbleIcon, CheckIcon } from '@modulz/radix-icons';
 import { styled, css } from '../css';
 import { Box } from '../components/Box';
@@ -15,44 +14,9 @@ import { Input } from '../components/Input';
 import { Combobox } from '../components/Combobox';
 import { Card } from '../components/Card';
 
-const TextPrimitive = ({ composes: Component = Box, ...props }) => (
-  <Component {...props} data-component-text />
-);
-
-const HeadingPrimitive = ({ composes: Component = Box, ...props }) => (
-  <Component
-    as="h1"
-    {...props}
-    data-component-heading
-    onClick={() => alert('main title mocking primitive functionality')}
-  />
-);
-
-const RedText = styled(TextPrimitive, {
-  color: 'red',
-});
-
-const MainTitle = (props) => <HeadingPrimitive composes={RedText} {...props} />;
-
 export default function Home() {
-  React.useEffect(() => {
-    var head = document.getElementsByTagName('head')[0];
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://core.modulz.app/fonts/fonts.css';
-    head.appendChild(link);
-  }, []);
-
   return (
     <div style={{ margin: 160 }}>
-      <Head>
-        <title>Demo</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <HeadingPrimitive>Heading</HeadingPrimitive>
-      <MainTitle as="h5">Red text as heading</MainTitle>
-
       <Box
         styled={css({
           display: 'grid',

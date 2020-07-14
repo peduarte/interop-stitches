@@ -1,7 +1,12 @@
 import React from 'react';
+import { Box } from 'react-polymorphic-box';
 
-export const Button = ({ as: Component = 'button', ...props }) => (
-  <Component data-component-button {...props} />
+export const Button = ({ compose: Component = Box, as = 'button', ...props }) => (
+  <Component {...props} as={as} data-component-button />
+);
+
+Button.Label = ({ compose: Component = Box, as = 'span', ...props }) => (
+  <Component {...props} as={as} data-component-button-label />
 );
 
 export const styles = {
@@ -13,4 +18,5 @@ export const styles = {
     justifyContent: 'center',
     outline: 0,
   },
+  label: {},
 };
