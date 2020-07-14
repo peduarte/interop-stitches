@@ -1,7 +1,7 @@
 // import { createCss } from './stitches/css';
-import { createStyled } from './stitches/styled';
+// import { createStyled } from './stitches/styled';
 import { createCss } from '@stitches/css';
-// import { createStyled } from '@stitches/styled';
+import { createStyled } from '@stitches/styled';
 import { theme } from '../theme';
 
 export const css = createCss({
