@@ -940,20 +940,20 @@
   resolved "https://registry.yarnpkg.com/@modulz/radix-icons/-/radix-icons-2.4.0.tgz#62bb73265d39aa990a3adfb089f00cecbaf791c5"
   integrity sha512-19pLQSJtzVtlOon86QC3gigjoigumIvAch79wXl3/yyaWsip6n2CgPHKu/5hKhjK2qYCr84b0VmZkmj1krAl/w==
 
-"@stitches/css@5.0.0", "@stitches/css@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-5.0.0.tgz#ded98e2e8d13a2adebc7ff9b7ccca5bbe3e5f20f"
-  integrity sha512-iqFc6FkZgprY8P2smvSI1jnjTTb+nObgcSRQrOB3lAs2b6Svfe5yF5fH97XEN2w8pCSHcOx7HbOmfphCBrWoCQ==
+"@stitches/css@5.2.4", "@stitches/css@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@stitches/css/-/css-5.2.4.tgz#7f33b78300c74480b82a2d6958691e537a0186d5"
+  integrity sha512-KLuRecy0pr1m/m/nXG3mVcGVNfeeCMIMENVVYV8Stuae0AHE36YA7OqTbjvA0Nq47AabaIjISXrpoKgDYPZepA==
   dependencies:
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 
-"@stitches/styled@5.2.2":
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.2.2.tgz#c3dfb33b7cd373e19b602d8480deef66cc3644b6"
-  integrity sha512-ZYm2MSbxGW/il65aKKaLSPfyZV8tLJBwEkfECD/+QGltOxs6nzabf5xTqFmEPtLwuRpeNgk3OYJ5kh5LdVLNyg==
+"@stitches/styled@5.2.4":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@stitches/styled/-/styled-5.2.4.tgz#dbb2ced71f6bdf0c4e7dabe053ffc2914250dd23"
+  integrity sha512-9+NEeHiDRyYHLgjtRgJ75cuDToJu8ZvMP5Cl3R1UDxOekTllb6D4HSLGkWA057yRDoaScayOJ0zDs6VcjlSH4A==
   dependencies:
-    "@stitches/css" "^5.0.0"
+    "@stitches/css" "^5.2.4"
     "@types/node" "^13.11.1"
     tslib "^1.11.1"
 

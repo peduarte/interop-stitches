@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@modulz/radix-icons": "latest",
-    "@stitches/css": "5.0.0",
-    "@stitches/styled": "5.2.2",
+    "@stitches/css": "5.2.4",
+    "@stitches/styled": "5.2.4",
     "lodash.merge": "^4.6.2",
     "next": "9.3.5",
     "react": "16.13.1",

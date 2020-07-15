@@ -1,0 +1,3 @@
+- Test files are in /pages
+- Components are not receiving classnames, just a **compositions** attribute
+- react-polymorphic-box has been upgraded, shall we use it again?
