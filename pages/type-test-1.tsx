@@ -69,7 +69,7 @@ export function VariantTestResponsive() {
 
 // Div should accept as prop and be typed accordingly
 // in this test we render the Div as a "a", we expect the `hred` attribute to exist
-// ❌ FAIL
+// ✅  PASS
 export function PolyDivAsA() {
   return <Div as="a" href="#" />;
 }

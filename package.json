@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@modulz/radix-icons": "latest",
-    "@stitches/css": "5.2.4",
-    "@stitches/styled": "5.2.4",
+    "@stitches/css": "^7.0.0",
+    "@stitches/styled": "^7.0.0",
+    "add": "^2.0.6",
     "lodash.merge": "^4.6.2",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-polymorphic-box": "^2.0.4"
+    "react-polymorphic-box": "^2.0.4",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@types/node": "^13.11.1",

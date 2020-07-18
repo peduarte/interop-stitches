@@ -15,7 +15,7 @@ export function BaseButton() {
   return <button />;
 }
 
-const Button = styled((props) => <styled.Box {...props} as={props.as || 'button'} />, {
+const Button = styled<{ as: 'button' }>((props) => <styled.Box {...props} />, {
   color: 'red',
 });
 
@@ -43,7 +43,7 @@ const ButtonWithVariants = styled(
 // in this test, we check that `type="button"` is valid and autocompleted
 // ❌ FAIL
 export function AttributeTest() {
-  return <Button /*type*/ />;
+  return <Button />;
 }
 
 // Button should accept `onClick` and other events

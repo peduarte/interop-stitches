@@ -1,78 +1,74 @@
 // import { createCss } from './stitches/css';
 // import { createStyled } from './stitches/styled';
-import { createCss } from '@stitches/css';
 import { createStyled } from '@stitches/styled';
 import { theme } from '../theme';
 
-export const css = createCss({
+const { styled, css } = createStyled({
   tokens: theme,
   utils: {
-    size: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(utilCss.width(value, pseudo), utilCss.height(value, pseudo));
-    },
-    bg: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.backgroundColor(value, pseudo);
-    },
-    mt: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.marginTop(value, pseudo);
-    },
-    mr: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.marginRight(value, pseudo);
-    },
-    mb: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.marginBottom(value, pseudo);
-    },
-    ml: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.marginLeft(value, pseudo);
-    },
-    marginX: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(utilCss.marginLeft(value, pseudo), utilCss.marginRight(value, pseudo));
-    },
-    mx: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(utilCss.marginLeft(value, pseudo), utilCss.marginRight(value, pseudo));
-    },
-    marginY: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(utilCss.marginTop(value, pseudo), utilCss.marginBottom(value, pseudo));
-    },
-    my: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(utilCss.marginTop(value, pseudo), utilCss.marginBottom(value, pseudo));
-    },
-    pt: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.paddingTop(value, pseudo);
-    },
-    pr: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.paddingRight(value, pseudo);
-    },
-    pb: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.paddingBottom(value, pseudo);
-    },
-    pl: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.paddingLeft(value, pseudo);
-    },
-    paddingX: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(
-        utilCss.paddingLeft(value, pseudo),
-        utilCss.paddingRight(value, pseudo)
-      );
-    },
-    px: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(
-        utilCss.paddingLeft(value, pseudo),
-        utilCss.paddingRight(value, pseudo)
-      );
-    },
-    paddingY: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(
-        utilCss.paddingTop(value, pseudo),
-        utilCss.paddingBottom(value, pseudo)
-      );
-    },
-    py: (utilCss) => (value: number | string, pseudo?: string) => {
-      return utilCss.compose(
-        utilCss.paddingTop(value, pseudo),
-        utilCss.paddingBottom(value, pseudo)
-      );
-    },
+    size: () => (value: number | string) => ({
+      width: value,
+      height: value,
+    }),
+    bg: () => (value: number | string) => ({
+      backgroundColor: value,
+    }),
+    mt: () => (value: number | string) => ({
+      marginTop: value,
+    }),
+    mr: () => (value: number | string) => ({
+      marginRight: value,
+    }),
+    mb: () => (value: number | string) => ({
+      marginBottom: value,
+    }),
+    ml: () => (value: number | string) => ({
+      marginLeft: value,
+    }),
+    marginX: () => (value: number | string) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    mx: () => (value: number | string) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    marginY: () => (value: number | string) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+    my: () => (value: number | string) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+    pt: () => (value: number | string) => ({
+      paddingTop: value,
+    }),
+    pr: () => (value: number | string) => ({
+      paddingRight: value,
+    }),
+    pb: () => (value: number | string) => ({
+      paddingBottom: value,
+    }),
+    pl: () => (value: number | string) => ({
+      paddingLeft: value,
+    }),
+    paddingX: () => (value: number | string) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    px: () => (value: number | string) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    paddingY: () => (value: number | string) => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
+    py: () => (value: number | string) => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
   },
   screens: {
     small: (rule) => rule,
@@ -190,5 +186,4 @@ export const chakra = css.theme({
   },
 });
 
-// @ts-ignore
-export const styled = createStyled(css);
+export { css, styled };
