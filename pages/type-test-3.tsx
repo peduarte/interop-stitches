@@ -16,10 +16,7 @@ const Div = styled('div', {
 
 // Autcompletes CSS Properties and possible values *in variant* when using `styled`
 // ✅ PASS - CSS Properties are autocompletes
-// ❌ FAIL - Possible values, eg: values of `alignItems` dont autocomplete
-// This is a Typescript issue. Originally this is also a problem on CSS properties, but using (string & {}) we are
-// able to combine autocomplete of some strings with any string. But CSS variants is a generic, and for some reason
-// generics does not give the same autocomplete behaviour: https://github.com/Microsoft/TypeScript/issues/29729#issuecomment-660876538
+// ✅ PASS - Possible values, eg: values of `alignItems` dont autocomplete
 const Div2 = styled(
   'div',
   {},
@@ -27,7 +24,7 @@ const Div2 = styled(
     size: {
       small: {
         backgroundColor: 'blue',
-        alignContent: '',
+        alignContent: 'end',
       },
     },
   }
