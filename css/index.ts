@@ -25,7 +25,7 @@ const { styled, css } = createStyled({
     ml: () => (value: number | string) => ({
       marginLeft: value,
     }),
-    marginX: () => (value: number | string) => ({
+    marginX: () => (value: keyof typeof theme['space']) => ({
       marginLeft: value,
       marginRight: value,
     }),
@@ -53,7 +53,7 @@ const { styled, css } = createStyled({
     pl: () => (value: number | string) => ({
       paddingLeft: value,
     }),
-    paddingX: () => (value: number | string) => ({
+    paddingX: () => (value: keyof typeof theme['space']) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
