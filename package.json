@@ -10,7 +10,7 @@
   "dependencies": {
     "@modulz/radix-icons": "latest",
     "@stitches/css": "^7.0.0",
-    "@stitches/styled": "^7.0.3",
+    "@stitches/styled": "^7.0.4",
     "add": "^2.0.6",
     "lodash.merge": "^4.6.2",
     "next": "9.3.5",
