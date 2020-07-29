@@ -7,67 +7,67 @@ const { styled, css } = createStyled({
   tokens: theme,
   utils: {
     size: () => (value: number | string) => ({
-      width: value,
-      height: value,
+      width: String(value),
+      height: String(value),
     }),
     bg: () => (value: number | string) => ({
-      backgroundColor: value,
+      backgroundColor: String(value),
     }),
     mt: () => (value: number | string) => ({
-      marginTop: value,
+      marginTop: String(value),
     }),
     mr: () => (value: number | string) => ({
-      marginRight: value,
+      marginRight: String(value),
     }),
     mb: () => (value: number | string) => ({
-      marginBottom: value,
+      marginBottom: String(value),
     }),
     ml: () => (value: number | string) => ({
-      marginLeft: value,
+      marginLeft: String(value),
     }),
     marginX: () => (value: keyof typeof theme['space']) => ({
-      marginLeft: value,
-      marginRight: value,
+      marginLeft: String(value),
+      marginRight: String(value),
     }),
     mx: () => (value: number | string) => ({
-      marginLeft: value,
-      marginRight: value,
+      marginLeft: String(value),
+      marginRight: String(value),
     }),
     marginY: () => (value: number | string) => ({
-      marginTop: value,
-      marginBottom: value,
+      marginTop: String(value),
+      marginBottom: String(value),
     }),
     my: () => (value: number | string) => ({
-      marginTop: value,
-      marginBottom: value,
+      marginTop: String(value),
+      marginBottom: String(value),
     }),
     pt: () => (value: number | string) => ({
-      paddingTop: value,
+      paddingTop: String(value),
     }),
     pr: () => (value: number | string) => ({
-      paddingRight: value,
+      paddingRight: String(value),
     }),
     pb: () => (value: number | string) => ({
-      paddingBottom: value,
+      paddingBottom: String(value),
     }),
     pl: () => (value: number | string) => ({
-      paddingLeft: value,
+      paddingLeft: String(value),
     }),
     paddingX: () => (value: keyof typeof theme['space']) => ({
-      paddingLeft: value,
-      paddingRight: value,
+      paddingLeft: String(value),
+      paddingRight: String(value),
     }),
     px: () => (value: number | string) => ({
-      paddingLeft: value,
-      paddingRight: value,
+      paddingLeft: String(value),
+      paddingRight: String(value),
     }),
     paddingY: () => (value: number | string) => ({
-      paddingTop: value,
-      paddingBottom: value,
+      paddingTop: String(value),
+      paddingBottom: String(value),
     }),
     py: () => (value: number | string) => ({
-      paddingTop: value,
-      paddingBottom: value,
+      paddingTop: String(value),
+      paddingBottom: String(value),
     }),
   },
   screens: {
