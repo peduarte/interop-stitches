@@ -8,7 +8,7 @@ export const Input = ({ compose: Component = Box, as = 'input', ...props }) => (
 export const styles = {
   input: {
     appearance: 'none',
-    border: 0,
+    border: '0',
     outline: 0,
     boxSizing: 'border-box',
   },

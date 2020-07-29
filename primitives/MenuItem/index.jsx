@@ -8,7 +8,7 @@ export const MenuItem = ({ compose: Component = Box, as = 'button', ...props }) 
 export const styles = {
   menuItem: {
     appearance: 'none',
-    border: 0,
+    border: '0',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',

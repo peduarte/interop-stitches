@@ -9,19 +9,19 @@
   },
   "dependencies": {
     "@modulz/radix-icons": "latest",
-    "@stitches/css": "^7.0.0",
-    "@stitches/styled": "^7.0.4",
+    "@stitches/css": "^8.0.0",
+    "@stitches/styled": "^8.0.1",
     "add": "^2.0.6",
     "lodash.merge": "^4.6.2",
-    "next": "9.3.5",
+    "next": "9.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-polymorphic-box": "^2.0.4",
+    "react-polymorphic-box": "^2.0.5",
     "yarn": "^1.22.4"
   },
   "devDependencies": {
-    "@types/node": "^13.11.1",
-    "@types/react": "^16.9.41",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.43",
     "typescript": "^3.9.7"
   }
 }

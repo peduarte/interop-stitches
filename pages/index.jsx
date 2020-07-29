@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div style={{ margin: 160 }}>
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           marginBottom: 4,
           gridTemplateColumns: 'repeat(1, min-content)',
@@ -31,7 +31,7 @@ export default function Home() {
         <Button variant="red">Red button</Button>
       </Box>
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '20px',
           gridTemplateColumns: 'repeat(4, min-content)',
@@ -48,7 +48,7 @@ export default function Home() {
         </Button>
       </Box>
       <Box
-        styled={css({
+        css={css({
           width: '50%',
         })}
       >
@@ -57,7 +57,7 @@ export default function Home() {
         </IconButton>
       </Box>
       <Box
-        styled={css({
+        css={css({
           maxWidth: '300px',
           marginBottom: 4,
         })}
@@ -65,7 +65,7 @@ export default function Home() {
         <Slider />
         <Slider disabled />
       </Box>
-      <Box styled={css({ mb: 4 })}>
+      <Box css={css({ mb: 4 })}>
         <Text size="0">What I talk about when I talk about running</Text>
         <Text size="1">What I talk about when I talk about running</Text>
         <Text size="2">What I talk about when I talk about running</Text>
@@ -77,31 +77,31 @@ export default function Home() {
         <Text size="8">What I talk about when I talk about running</Text>
         <Text size="9">What I talk about when I talk about running</Text>
         <Text size="10">What I talk about when I talk about running</Text>
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'blue600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'blue600' })}>
           I
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'blue600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'blue600' })}>
           can
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'yellow600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'yellow600' })}>
           be
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'yellow600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'yellow600' })}>
           colourful
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'red600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'red600' })}>
           and
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'red600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'red600' })}>
           bold
         </Text>{' '}
-        <Text weight="bold" size="10" as="span" styled={css({ color: 'green600' })}>
+        <Text weight="bold" size="10" as="span" css={css({ color: 'green600' })}>
           too!
         </Text>
       </Box>
 
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '20px',
           maxWidth: '360px',
@@ -109,7 +109,7 @@ export default function Home() {
         })}
       >
         <Alert>
-          <Text weight="bold" styled={css({ mb: 1 })}>
+          <Text weight="bold" css={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -118,7 +118,7 @@ export default function Home() {
         </Alert>
 
         <Alert variant="blue">
-          <Text weight="bold" styled={css({ mb: 1 })}>
+          <Text weight="bold" css={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -126,7 +126,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="red">
-          <Text weight="bold" styled={css({ mb: 1 })}>
+          <Text weight="bold" css={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -134,7 +134,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="green">
-          <Text weight="bold" styled={css({ mb: 1 })}>
+          <Text weight="bold" css={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -142,7 +142,7 @@ export default function Home() {
           </Text>
         </Alert>
         <Alert variant="yellow">
-          <Text weight="bold" styled={css({ mb: 1 })}>
+          <Text weight="bold" css={css({ mb: 1 })}>
             Cool alert title.
           </Text>
           <Text as="p" size="3">
@@ -151,7 +151,7 @@ export default function Home() {
         </Alert>
       </Box>
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',
@@ -169,7 +169,7 @@ export default function Home() {
         </MenuItem>
       </Box>
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',
@@ -177,11 +177,11 @@ export default function Home() {
         })}
       >
         <MenuPanel>
-          <Box styled={css({ height: '100px' })} />
+          <Box css={css({ height: '100px' })} />
         </MenuPanel>
       </Box>
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',
@@ -205,7 +205,7 @@ export default function Home() {
       </Box>
 
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',
@@ -217,7 +217,7 @@ export default function Home() {
       </Box>
 
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',
@@ -228,7 +228,7 @@ export default function Home() {
       </Box>
 
       <Box
-        styled={css({
+        css={css({
           display: 'grid',
           gap: '10px',
           maxWidth: '300px',

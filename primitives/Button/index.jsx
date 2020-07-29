@@ -12,7 +12,7 @@ Button.Label = ({ compose: Component = Box, as = 'span', ...props }) => (
 export const styles = {
   button: {
     appearance: 'none',
-    border: 0,
+    border: '0',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
