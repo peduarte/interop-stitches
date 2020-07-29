@@ -71,7 +71,7 @@ export function VariantTestInvalid() {
 
 // Button should auto complete its variants when using responsive syntax
 // in this test we check that the `size` variant is valid and autocompleted
-// ✅ PASS
+// ❌ FAIL
 export function VariantTestResponsive() {
   return <ButtonWithVariants size={{ medium: 'medium' }} />;
 }
